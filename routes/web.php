@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Dokter Route
+Route::get('/dokter', function () {
+    return view('Admin/Dokter/view_dokter');
+});
