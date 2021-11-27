@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Dokter_Controller_A;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,4 @@ Route::get('/', function () {
 });
 
 // Dokter Route
-Route::get('/dokter', function () {
-    return view('Admin/Dokter/view_dokter');
-});
+Route::get('/dokter', [Dokter_Controller_A::class, 'get_all']);
