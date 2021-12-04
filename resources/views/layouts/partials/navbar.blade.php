@@ -16,7 +16,7 @@
             <a class="nav-link" href="#">Obat</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Ruang</a>
+            <a class="nav-link" href="/ruang">Ruang</a>
           </li>
       </div>
     </div>

@@ -14,7 +14,12 @@ class CreateTblDokter extends Migration
     public function up()
     {
         Schema::create('tbl_dokter', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_dokter');
+            $table->string('nama_dokter', 190);
+            $table->string('spesialis', 150);
+            $table->string('jadwal_hari', 150);
+            $table->string('jadwal_waktu', 45);
+            $table->string('foto_dokter', 170);
             $table->timestamps();
         });
     }
