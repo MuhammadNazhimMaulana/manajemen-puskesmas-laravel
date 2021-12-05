@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A};
+use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A};
 
 
 /*
@@ -15,9 +15,8 @@ use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A};
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Main Route
+Route::get('/', [User_Controller_A::class, 'dashboard']);
 
 // Dokter Route
 Route::get('/dokter', [Dokter_Controller_A::class, 'get_all']);
