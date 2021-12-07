@@ -40,6 +40,12 @@
 
     <!-- JS Bootstrap -->
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    {{-- Jquery --}}
+    <script src="JS/javascript.js"></script>
+
+    {{-- Custom JS --}}
+    <script src="JS/main.js"></script>
 
   </body>
 </html>
