@@ -17,14 +17,26 @@
     <title>Manajemen Puskesmas</title>
   </head>
   <body>
-
-    {{-- Navbar --}}
-    @include('layouts/partials.navbar')
-
-    {{-- Content --}}
-      <div class="container">
-            @yield('container')
+    {{-- Sidebar --}}
+    @include('layouts/partials.sidebar')
+    
+    <section id="interface">
+      <div class="navigation">
+        {{-- Navigation --}}
+        @include('layouts/partials.navigation')
       </div>
+
+      <h3 class="i-name">
+        Dashboard
+      </h3>
+      
+      {{-- Content --}} 
+      @yield('container')
+
+  </div>
+</section>
+
+
 
     <!-- JS Bootstrap -->
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>

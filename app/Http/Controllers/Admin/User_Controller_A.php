@@ -13,6 +13,6 @@ class User_Controller_A extends Controller
             "title" => "Ruang",
         ];
 
-        return view('layouts/main', $data);
+        return view('Admin/Main/dashboard_admin', $data);
     }
 }
