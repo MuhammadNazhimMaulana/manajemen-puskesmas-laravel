@@ -12,9 +12,10 @@ class Ruang_Controller_A extends Controller
 {
     public function get_all()
     {
+
         $data = [
             "title" => "Ruang",
-            "rooms" => Ruang_Model::all()
+            "rooms" => Ruang_Model::filterRuang(request(['cari_ruang']))->paginate(5)
         ];
 
         return view('Admin/Ruang/view_ruang', $data);

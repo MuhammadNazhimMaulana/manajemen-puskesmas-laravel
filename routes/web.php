@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A};
+use App\Http\Controllers\Auth\Auth_Controller;
 
 
 /*
@@ -23,3 +24,6 @@ Route::get('/dokter', [Dokter_Controller_A::class, 'get_all']);
 
 // Ruang Route
 Route::get('/ruang', [Ruang_Controller_A::class, 'get_all']);
+
+// Auth
+Route::get('/login', [Auth_Controller::class, 'login']);

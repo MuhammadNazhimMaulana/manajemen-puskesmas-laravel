@@ -27,7 +27,7 @@
       </div>
 
       <h3 class="i-name">
-        Dashboard
+        {{ $title }}
       </h3>
       
       {{-- Content --}} 

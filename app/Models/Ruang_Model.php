@@ -15,4 +15,13 @@ class Ruang_Model extends Model
 
     // Fillable
     protected $fillable = ['nama_ruang', 'kapasitas', 'foto_ruang', 'created_at', 'updated_at'];
+
+    // Scope for searching
+    public function scopeFilterRuang($query, array $fillters)
+    {
+        // Searching
+        $query->when($fillters['cari_ruang'] ?? false, function ($query, $cari_ruang) {
+            return $query->where('nama_ruang', 'like', '%' . $cari_ruang . '%');
+        });
+    }
 }

@@ -286,6 +286,11 @@ tbody tr td {
     font-weight: 600;
 }
 
+/* Extra */
+.row.justify-content-center {
+    width: 100%;
+}
+
 /* Responsive */
 @media (max-width: 769px) {
     #menu {
