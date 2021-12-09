@@ -1,0 +1,70 @@
+html,
+body {
+    height: 100%;
+    background-color: #222d32 !important;
+    font-family: "Roboto", sans-serif;
+}
+
+.global-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0db8de;
+}
+
+form {
+    padding-top: 10px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.login-form {
+    width: 380px;
+    height: 450px;
+    margin: 20px;
+    background: #1a2226 !important;
+    border-radius: 10px !important;
+}
+
+.register-form {
+    width: 380px;
+    height: 490px;
+    margin: 20px;
+    background: #1a2226 !important;
+    border-radius: 10px !important;
+}
+
+input[type="text"],
+input[type="password"] {
+    color: aliceblue;
+    background: #1a2226;
+    border: 2px solid #0db8de;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border: none;
+    background: #1a2226;
+    margin: 0;
+}
+
+.card-title {
+    font-weight: 900;
+    padding-top: 20px;
+}
+
+.btn {
+    background: #0db8de;
+    font-size: 14px;
+    transform: translateY(10px);
+    border-radius: 10px !important;
+}
+
+.daftar {
+    text-align: center;
+    padding-top: 25px;
+}

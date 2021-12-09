@@ -27,3 +27,5 @@ Route::get('/ruang', [Ruang_Controller_A::class, 'get_all']);
 
 // Auth
 Route::get('/login', [Auth_Controller::class, 'login']);
+Route::get('/register', [Auth_Controller::class, 'register']);
+Route::post('/register', [Auth_Controller::class, 'storeRegister']);
