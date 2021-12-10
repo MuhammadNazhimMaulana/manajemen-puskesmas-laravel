@@ -46,7 +46,7 @@
                 <tbody>
                     <tr>
                         <td class="people">
-                            <img src="Images/Bonevian.png">
+                            <img class="gambar" src="Images/Bonevian.png">
                             <div class="people-de">
                                 <h5>Nama</h5>
                                 <p>email</p>

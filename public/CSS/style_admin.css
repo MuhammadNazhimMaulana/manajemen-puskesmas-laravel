@@ -224,7 +224,7 @@ body {
     border-radius: 8px;
 }
 
-.board img {
+.board .gambar {
     width: 45px;
     height: 45px;
     object-fit: cover;

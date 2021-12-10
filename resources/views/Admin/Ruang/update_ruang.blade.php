@@ -6,11 +6,12 @@
 
     <div class="board d-flex justify-content-center">
         <div class="col-lg-8">
-            <form action="/ruang/create" method="POST" enctype="multipart/form-data">
+            <form action="/ruang/update/{{ $ruang->id_ruang }}" method="POST" enctype="multipart/form-data">
+                @method('put')
                 @csrf
                 <div class="mb-3">
                     <label for="nama_ruang" class="form-label">Nama Ruang</label>
-                    <input type="text" name="nama_ruang" class="form-control @error('nama_ruang') is-invalid @enderror" id="nama_ruang" placeholder="Ruang..." value="{{ old('nama_ruang') }}">
+                    <input type="text" name="nama_ruang" class="form-control @error('nama_ruang') is-invalid @enderror" id="nama_ruang" placeholder="Ruang..." value="{{ old('nama_ruang', $ruang->nama_ruang) }}">
                     @error('nama_ruang')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -19,7 +20,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="kapasitas" class="form-label">Kapasitas Ruang</label>
-                    <input type="number" name="kapasitas" class="form-control @error('kapasitas') is-invalid @enderror" id="kapasitas" placeholder="1 2 3..." value="{{ old('ruang') }}">
+                    <input type="number" name="kapasitas" class="form-control @error('kapasitas') is-invalid @enderror" id="kapasitas" placeholder="1 2 3..." value="{{ old('kapasitas', $ruang->kapasitas) }}">
                     @error('kapasitas')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -29,7 +30,14 @@
 
                 <div class="mb-3">
                     <label for="foto_ruang" class="form-label">Upload Gambar Ruang</label>
-                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                        <input type="hidden" name="fotoRuangLama" value="{{ $ruang->foto_ruang }}">
+                        {{-- Check If picture exist --}}
+                        @if($ruang->foto_ruang)
+                            <img src="{{ asset('storage/' . $ruang->foto_ruang) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                        @else
+                            <img class="img-preview img-fluid mb-3 col-sm-5">
+                        @endif
+
                     <input class="form-control @error('foto_ruang') is-invalid @enderror" type="file" id="foto_ruang" name="foto_ruang" onchange="previewImage()">
                     @error('foto_ruang')
                         <div class="invalid-feedback">
@@ -38,7 +46,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Tambah Ruang</button>
+                <button type="submit" class="btn btn-primary">Update Ruang</button>
             </form>
         </div>
     </div>

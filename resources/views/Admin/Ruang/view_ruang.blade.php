@@ -19,7 +19,13 @@
         <div class="alert alert-success" role="alert">
             {{ session('success') }}
         </div>
-        @endif()
+        @endif
+
+        @if(session()->has('danger'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('danger') }}
+        </div>
+        @endif
 
         <a href="/ruang/create" class="btn btn-primary">Tambah Ruang</a>
         <table class="mt-3" width="100%">
@@ -36,7 +42,7 @@
                     <td>{{ $room->nama_ruang }}</td>
                     <td>{{ $room->kapasitas }}</td>
                     <td class="aksi">
-                        <a href="#">Edit</a>
+                        <a href="/ruang/update/{{ $room->id_ruang }}">Edit</a>
                         <form action="/ruang/delete/{{ $room->id_ruang }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf

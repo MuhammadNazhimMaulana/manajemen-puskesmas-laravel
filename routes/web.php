@@ -20,13 +20,18 @@ use App\Http\Controllers\Auth\Auth_Controller;
 Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
 
 // Dokter Route
-Route::get('/dokter', [Dokter_Controller_A::class, 'get_all']);
+Route::prefix('/dokter')->group(function () {
+    Route::get('/', [Dokter_Controller_A::class, 'get_all']);
+    Route::get('/create', [Dokter_Controller_A::class, 'create_dokter']);
+});
 
 // Ruang Route
 Route::prefix('/ruang')->group(function () {
     Route::get('/', [Ruang_Controller_A::class, 'get_all']);
     Route::get('/create', [Ruang_Controller_A::class, 'create_ruang']);
     Route::post('/create', [Ruang_Controller_A::class, 'store_ruang']);
+    Route::get('/update/{id}', [Ruang_Controller_A::class, 'update_ruang']);
+    Route::put('/update/{id}', [Ruang_Controller_A::class, 'update_ruang_process']);
     Route::delete('/delete/{id}', [Ruang_Controller_A::class, 'delete_ruang']);
 });
 
