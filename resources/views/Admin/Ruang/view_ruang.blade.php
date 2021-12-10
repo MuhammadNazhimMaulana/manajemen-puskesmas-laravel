@@ -15,7 +15,14 @@
     </div>
 
     <div class="board">
-        <table width="100%">
+        @if(session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif()
+
+        <a href="/ruang/create" class="btn btn-primary">Tambah Ruang</a>
+        <table class="mt-3" width="100%">
             <thead>
                 <tr>
                     <td>Nama Ruang</td>
@@ -28,7 +35,14 @@
                 <tr>
                     <td>{{ $room->nama_ruang }}</td>
                     <td>{{ $room->kapasitas }}</td>
-                    <td class="aksi"><a href="#">Edit</a></td>
+                    <td class="aksi">
+                        <a href="#">Edit</a>
+                        <form action="/ruang/delete/{{ $room->id_ruang }}" method="POST" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

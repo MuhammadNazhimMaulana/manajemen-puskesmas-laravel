@@ -1,6 +1,6 @@
 <section id="menu">
     <div class="logo">
-        <img src="Images/Bonevian.png">
+        <img src="{{ asset('Images/Bonevian.png') }}">
         <h2>Manajemen Puskesmas</h2>
     </div>
 

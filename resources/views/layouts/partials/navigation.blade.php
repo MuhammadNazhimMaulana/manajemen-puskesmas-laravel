@@ -10,6 +10,14 @@
 
     <div class="profile">
       <i class="far fa-bell"></i>
-      <img src="Images/Bonevian.png">
-      <a class="ms-4" href="/login">Login</a>
+      <img src="{{ asset('Images/Bonevian.png') }}">
+      @auth
+        <form action="/logout" method="POST">
+          @csrf
+          <button class="ms-4 border-0" type="submit">Logout, {{ auth()->user()->name }}</button>
+        </form>
+      @else
+      {{-- Jika Belum Login --}}
+        <a class="ms-4" href="/login">Login</a>
+      @endauth
     </div>

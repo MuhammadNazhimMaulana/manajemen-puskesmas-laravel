@@ -14,11 +14,20 @@
         </div>
         @endif
 
+        {{-- Tampilan Gagal Login --}}
+        @if(session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
         <div class="card-text">
             <form action="/login" method="POST">
+                @csrf
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" required>
+                    <input type="text" name="username" class="form-control" autofocus value="{{ old('username') }}" required>
                 </div>
                 <div class="form-group mt-3">
                     <label for="password">Password</label>

@@ -8,13 +8,17 @@
         <div class="card-text">
             <form action="/register" method="POST">
                 @csrf
+                <div class="form-group mt-3">
+                    <label for="name">Nama</label>
+                    <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
+                </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" class="form-control" required value="{{ old('username') }}">
                 </div>
-                <div class="form-group mt-3">
-                    <label for="secret">Secret</label>
-                    <input type="text" name="secret" class="form-control" required value="{{ old('secret') }}">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="form-control" required value="{{ old('email') }}">
                 </div>
                 <div class="form-group mt-3">
                     <label for="password">Password</label>
