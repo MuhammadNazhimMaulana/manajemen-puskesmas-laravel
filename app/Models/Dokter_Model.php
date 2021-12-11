@@ -16,6 +16,12 @@ class Dokter_Model extends Model
     // Fillable
     protected $fillable = ['nama_dokter', 'spesialis', 'jadwal_hari', 'jadwal_waktu', 'foto_dokter', 'created_at', 'updated_at'];
 
+    // Relationships
+    public function pendaftaran_model()
+    {
+        return $this->hasOne(Pendaftaran_Model::class, 'dokter_id', 'id_dokter');
+    }
+
     // Scope for searching
     public function scopeFilterDokter($query, array $fillters)
     {

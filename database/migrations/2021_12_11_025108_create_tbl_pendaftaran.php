@@ -19,6 +19,7 @@ class CreateTblPendaftaran extends Migration
             $table->unsignedBigInteger('dokter_id');
             $table->text('sakit');
             $table->enum('kebutuhan', ['Urgent', 'Tidak Urgent']);
+            $table->string('status_daftar');
             $table->timestamps();
         });
     }

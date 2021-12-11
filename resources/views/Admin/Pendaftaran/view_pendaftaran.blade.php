@@ -4,9 +4,9 @@
 <div class="values">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="/obat">
+            <form action="/pendaftaran">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Cari Obat Berdasarkan Nama" name="cari_pendaftar" value="{{ request('cari_pendaftar') }}">
+                    <input type="text" class="form-control" placeholder="Cari Pendaftar Berdasarkan Keluhan" name="cari_pendaftar" value="{{ request('cari_pendaftar') }}">
                     <button class="btn btn-danger" type="submit">Cari</button>
                   </div>
             </form>
@@ -26,25 +26,27 @@
         </div>
         @endif
 
-        <a href="/obat/create" class="btn btn-primary">Tambah Obat</a>
+        <a href="/pendaftaran/create" class="btn btn-primary">Tambah Pendaftar</a>
         <table class="mt-3" width="100%">
             <thead>
                 <tr>
-                    <td>Nama Obat</td>
-                    <td>Jumlah Stok</td>
-                    <td>Tanggal Kadaluarsa</td>
+                    <td>Nama Pendaftar</td>
+                    <td>Nama Dokter</td>
+                    <td>Keluhan</td>
+                    <td>Kebutuhan</td>
                     <td>Aksi</td>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($obat as $medicine)
+                @foreach ($pendaftar as $daftar)
                 <tr>
-                    <td>{{ $medicine->nama_obat }}</td>
-                    <td>{{ $medicine->stok}}</td>
-                    <td>{{ $medicine->tanggal_kadaluarsa }}</td>
+                    <td>{{ $daftar->user->name }}</td>
+                    <td>{{ $daftar->dokter_model->nama_dokter }}</td>
+                    <td>{{ $daftar->sakit }}</td>
+                    <td>{{ $daftar->kebutuhan }}</td>
                     <td class="aksi">
-                        <a href="/obat/update/{{ $medicine->id_obat }}">Edit</a>
-                        <form action="/obat/delete/{{ $medicine->id_obat }}" method="POST" class="d-inline">
+                        <a href="/pendaftaran/update/{{ $daftar->id_daftar }}">Edit</a>
+                        <form action="/pendaftaran/delete/{{ $daftar->id_daftar }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
@@ -56,7 +58,7 @@
         </table>
 
         <div class="d-flex justify-content-end mt-5">
-            {{ $obat->links() }}
+            {{ $pendaftar->links() }}
         </div>
 
     </div>

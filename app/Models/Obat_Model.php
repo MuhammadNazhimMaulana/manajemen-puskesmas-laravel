@@ -15,4 +15,14 @@ class Obat_Model extends Model
 
     // Fillable
     protected $fillable = ['nama_obat', 'stok', 'tanggal_kadaluarsa', 'perusahaan', 'foto_obat', 'created_at', 'updated_at'];
+
+
+    // Scope for searching
+    public function scopeFilterObat($query, array $fillters)
+    {
+        // Searching
+        $query->when($fillters['cari_obat'] ?? false, function ($query, $cari_obat) {
+            return $query->where('nama_obat', 'like', '%' . $cari_obat . '%');
+        });
+    }
 }

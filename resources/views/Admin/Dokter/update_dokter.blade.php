@@ -66,7 +66,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Tambah Dokter</button>
+                <button type="submit" class="btn btn-primary">Update Dokter</button>
             </form>
         </div>
     </div>
