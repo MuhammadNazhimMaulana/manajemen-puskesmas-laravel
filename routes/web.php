@@ -23,6 +23,8 @@ Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
 Route::prefix('/dokter')->group(function () {
     Route::get('/', [Dokter_Controller_A::class, 'get_all']);
     Route::get('/create', [Dokter_Controller_A::class, 'create_dokter']);
+    Route::post('/create', [Dokter_Controller_A::class, 'store_dokter']);
+    Route::get('/update/{id}', [Dokter_Controller_A::class, 'update_dokter']);
 });
 
 // Ruang Route

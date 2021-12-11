@@ -29,4 +29,36 @@ class Dokter_Controller_A extends Controller
 
         return view('Admin/Dokter/create_dokter', $data);
     }
+
+    public function store_dokter(Request $request)
+    {
+
+        $validateDokter = $request->validate([
+            'nama_dokter' => 'required',
+            'spesialis' => 'required',
+            'jadwal_hari' => 'required',
+            'jadwal_waktu' => 'required',
+            'foto_dokter' => 'image|file|max:1024'
+        ]);
+
+        if ($request->file('foto_dokter')) {
+            $validateDokter['foto_dokter'] = $request->file('foto_dokter')->store('Foto Dokter');
+        }
+
+        Dokter_Model::create($validateDokter);
+
+        return redirect('/dokter')->with('success', 'Dokter Baru Berhasil Ditambahkan');
+    }
+
+    public function update_dokter(int $id)
+    {
+        $dokter = Dokter_Model::where('id_dokter', $id)->first();
+
+        $data = [
+            "title" => "Dokter",
+            "dokter" => $dokter
+        ];
+
+        return view('Admin/Dokter/update_dokter', $data);
+    }
 }
