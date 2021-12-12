@@ -22,6 +22,11 @@ class Dokter_Model extends Model
         return $this->hasOne(Pendaftaran_Model::class, 'dokter_id', 'id_dokter');
     }
 
+    public function pasien_model()
+    {
+        return $this->hasOne(Pasienn_Model::class, 'dokter_id', 'id_dokter');
+    }
+
     // Scope for searching
     public function scopeFilterDokter($query, array $fillters)
     {

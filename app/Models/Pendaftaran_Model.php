@@ -27,6 +27,11 @@ class Pendaftaran_Model extends Model
         return $this->belongsTo(Dokter_Model::class, 'dokter_id', 'id_dokter');
     }
 
+    public function pasien_model()
+    {
+        return $this->belongsTo(Pasien_Model::class, 'daftar_id', 'id_daftar');
+    }
+
     // Scope for searching
     public function scopeFilterPendaftaran($query, array $fillters)
     {

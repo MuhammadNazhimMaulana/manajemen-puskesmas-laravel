@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pendaftaran_Model::class, 'user_id');
     }
+
+    public function pasien_model()
+    {
+        return $this->hasOne(Pasien_Model::class, 'user_id');
+    }
 }

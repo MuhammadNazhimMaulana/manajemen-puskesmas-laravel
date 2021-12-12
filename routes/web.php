@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A};
+use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A};
 use App\Http\Controllers\Auth\Auth_Controller;
 
 
@@ -39,7 +39,7 @@ Route::prefix('/ruang')->group(function () {
     Route::delete('/delete/{id}', [Ruang_Controller_A::class, 'delete_ruang']);
 });
 
-// Ruang pendaftaran
+// Pendaftaran Route
 Route::prefix('/pendaftaran')->group(function () {
     Route::get('/', [Pendaftaran_Controller_A::class, 'get_all']);
     Route::get('/create', [Pendaftaran_Controller_A::class, 'create_pendaftaran']);
@@ -49,7 +49,7 @@ Route::prefix('/pendaftaran')->group(function () {
     Route::delete('/delete/{id}', [Pendaftaran_Controller_A::class, 'delete_pendaftaran']);
 });
 
-// Ruang obat
+// Obat Route
 Route::prefix('/obat')->group(function () {
     Route::get('/', [Obat_Controller_A::class, 'get_all']);
     Route::get('/create', [Obat_Controller_A::class, 'create_obat']);
@@ -57,6 +57,16 @@ Route::prefix('/obat')->group(function () {
     Route::get('/update/{id}', [Obat_Controller_A::class, 'update_obat']);
     Route::put('/update/{id}', [Obat_Controller_A::class, 'update_obat_process']);
     Route::delete('/delete/{id}', [Obat_Controller_A::class, 'delete_obat']);
+});
+
+// Pasien Route
+Route::prefix('/pasien')->group(function () {
+    Route::get('/', [Pasien_Controller_A::class, 'get_all']);
+    Route::get('/create', [Pasien_Controller_A::class, 'create_pasien']);
+    Route::post('/create', [Pasien_Controller_A::class, 'store_pasien']);
+    Route::get('/update/{id}', [Pasien_Controller_A::class, 'update_pasien']);
+    Route::put('/update/{id}', [Pasien_Controller_A::class, 'update_pasien_process']);
+    Route::delete('/delete/{id}', [Pasien_Controller_A::class, 'delete_pasien']);
 });
 
 // Auth

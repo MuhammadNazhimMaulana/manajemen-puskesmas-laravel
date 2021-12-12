@@ -63,7 +63,6 @@ class Dokter_Controller_A extends Controller
         return view('Admin/Dokter/update_dokter', $data);
     }
 
-
     public function update_dokter_process(Request $request, int $id)
     {
         $dokter = Dokter_Model::where('id_dokter', $id)->first();

@@ -16,6 +16,12 @@ class Ruang_Model extends Model
     // Fillable
     protected $fillable = ['nama_ruang', 'kapasitas', 'foto_ruang', 'created_at', 'updated_at'];
 
+    // Relationships
+    public function pasien_model()
+    {
+        return $this->hasOne(Pasien_Model::class, 'ruang_id', 'id_ruang');
+    }
+
     // Scope for searching
     public function scopeFilterRuang($query, array $fillters)
     {
