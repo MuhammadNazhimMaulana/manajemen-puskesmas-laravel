@@ -16,10 +16,15 @@ class Obat_Model extends Model
     // Fillable
     protected $fillable = ['nama_obat', 'stok', 'tanggal_kadaluarsa', 'perusahaan', 'foto_obat', 'created_at', 'updated_at'];
 
-    // Relationships
+    // Inverse Relationships
     public function pasien_model()
     {
         return $this->hasOne(Pasien_Model::class, 'obat_id', 'id_obat');
+    }
+
+    public function keranjangobat_model()
+    {
+        return $this->hasOne(KeranjangObat_Model::class, 'obat_id', 'id_obat');
     }
 
     // Scope for searching

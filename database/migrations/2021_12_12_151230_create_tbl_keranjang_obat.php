@@ -16,8 +16,10 @@ class CreateTblKeranjangObat extends Migration
         Schema::create('tbl_keranjang_obat', function (Blueprint $table) {
             $table->id('id_keranjang');
             $table->unsignedBigInteger('obat_id');
+            $table->unsignedBigInteger('pembelian_id');
             $table->unsignedBigInteger('pasien_id');
             $table->integer('jml_beli_obat');
+            $table->integer('harga_obat');
             $table->timestamps();
         });
     }

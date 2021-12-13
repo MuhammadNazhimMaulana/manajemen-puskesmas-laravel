@@ -42,6 +42,17 @@ class Pasien_Model extends Model
         return $this->belongsTo(Obat_Model::class, 'obat_id', 'id_obat');
     }
 
+    // Inverse
+    public function transaksi_model()
+    {
+        return $this->hasOne(Transaksi_Model::class, 'pasien_id', 'id_pasien');
+    }
+
+    public function keranjangobat_model()
+    {
+        return $this->hasOne(KeranjangObat_Model::class, 'pasien_id', 'id_pasien');
+    }
+
     // Scope for searching
     public function scopeFilterPasien($query, array $fillters)
     {

@@ -44,14 +44,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Relationships
+    // Inverse Relationships
     public function pendaftaran_model()
     {
         return $this->hasOne(Pendaftaran_Model::class, 'user_id');
     }
 
+    public function pembelianobat_model()
+    {
+        return $this->hasOne(PembelianObat_Model::class, 'user_id');
+    }
+
     public function pasien_model()
     {
         return $this->hasOne(Pasien_Model::class, 'user_id');
+    }
+
+    public function transaksi_model()
+    {
+        return $this->hasOne(Transaksi_Model::class, 'user_id');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A};
+use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\Auth_Controller;
 
 
@@ -67,6 +67,16 @@ Route::prefix('/pasien')->group(function () {
     Route::get('/update/{id}', [Pasien_Controller_A::class, 'update_pasien']);
     Route::put('/update/{id}', [Pasien_Controller_A::class, 'update_pasien_process']);
     Route::delete('/delete/{id}', [Pasien_Controller_A::class, 'delete_pasien']);
+});
+
+// Transaksi Route
+Route::prefix('/transaksi')->group(function () {
+    Route::get('/', [Transaksi_Controller_A::class, 'get_all']);
+    Route::get('/create', [Transaksi_Controller_A::class, 'create_transaksi']);
+    Route::post('/create', [Transaksi_Controller_A::class, 'store_transaksi']);
+    Route::get('/update/{id}', [Transaksi_Controller_A::class, 'update_transaksi']);
+    Route::put('/update/{id}', [Transaksi_Controller_A::class, 'update_transaksi_process']);
+    Route::delete('/delete/{id}', [Transaksi_Controller_A::class, 'delete_transaksi']);
 });
 
 // Auth
