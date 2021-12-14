@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
+use App\Http\Controllers\Admin\{PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\Auth_Controller;
 
 
@@ -77,6 +77,16 @@ Route::prefix('/transaksi')->group(function () {
     Route::get('/update/{id}', [Transaksi_Controller_A::class, 'update_transaksi']);
     Route::put('/update/{id}', [Transaksi_Controller_A::class, 'update_transaksi_process']);
     Route::delete('/delete/{id}', [Transaksi_Controller_A::class, 'delete_transaksi']);
+});
+
+// Transaksi Pemeblian Obat Route
+Route::prefix('/pembelian')->group(function () {
+    Route::get('/', [PembelianObat_Controller_A::class, 'get_all']);
+    Route::get('/create', [PembelianObat_Controller_A::class, 'create_pembelian']);
+    Route::post('/create', [PembelianObat_Controller_A::class, 'store_pembelian']);
+    Route::get('/update/{id}', [PembelianObat_Controller_A::class, 'update_pembelian']);
+    Route::put('/update/{id}', [PembelianObat_Controller_A::class, 'update_pembelian_process']);
+    Route::delete('/delete/{id}', [PembelianObat_Controller_A::class, 'delete_pembelian']);
 });
 
 // Auth

@@ -50,8 +50,10 @@ class Auth_Controller extends Controller
     }
 
     // Auth Login (Cek untuk Login)
-    public function authLogin(Request $request)
+    public function authLogin(Request $request, User $user)
     {
+        $pengguna = $user->where('username', $request['username'])->first();
+
         $loginData = $request->validate([
             'username' => 'required|min:3|max:255',
             'password' => 'required|min:5|max:255',
@@ -59,6 +61,9 @@ class Auth_Controller extends Controller
 
         if (Auth::attempt($loginData)) {
             $request->session()->regenerate();
+
+            // Store data in session
+            $request->session()->put('pengguna', [$pengguna->name, $pengguna->username]);
 
             return redirect()->intended('/');
         }

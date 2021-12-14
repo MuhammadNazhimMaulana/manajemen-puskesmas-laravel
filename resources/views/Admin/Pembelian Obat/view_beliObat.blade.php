@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <form action="/pasien">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Cari Pasien Berdasarkan Tanggal Pembayaran" name="cari_transaksi" value="{{ request('cari_transaksi') }}">
+                    <input type="text" class="form-control" placeholder="Cari Pembelian Obat" name="cari_pembelian" value="{{ request('cari_pembelian') }}">
                     <button class="btn btn-danger" type="submit">Cari</button>
                   </div>
             </form>
@@ -26,25 +26,27 @@
         </div>
         @endif
 
-        <a href="/transaksi/create" class="btn btn-primary">Tambah Transaksi</a>
+        <a href="/pembelian/create" class="btn btn-primary">Beli Obat</a>
         <table class="mt-3" width="100%">
             <thead>
                 <tr>
-                    <td>Nama Pasien</td>
-                    <td>Jadwal Pasien</td>
-                    <td>Keterangan Pembayaran</td>
+                    <td>Nama Pembeli</td>
+                    <td>Tanggal Pembayaran Pemeriksaan</td>
+                    <td>PPN</td>
+                    <td>Pembayaran Setelah PPN</td>
                     <td>Aksi</td>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($transaksi as $transactions)
+                @foreach ($pembelian as $buy_medicines)
                 <tr>
-                    <td>{{ $transactions->user->name }}</td>
-                    <td>{{ $transactions->pasien_model->jadwal_periksa}}</td>
-                    <td>{{ $transactions->ket_pembayaran }}</td>
+                    <td>{{ $buy_medicines->user->name }}</td>
+                    <td>{{ $buy_medicines->transaksi_model->tanggal_bayar}}</td>
+                    <td>{{ $buy_medicines->ppn }}</td>
+                    <td>{{ $buy_medicines->jumlah_bayar }}</td>
                     <td class="aksi">
-                        <a href="/transaksi/update/{{ $transactions->id_transaksi }}">Edit</a>
-                        <form action="/transaksi/delete/{{ $transactions->id_transaksi }}" method="POST" class="d-inline">
+                        <a href="/pembelian/update/{{ $buy_medicines->id_pembelian }}">Edit</a>
+                        <form action="/pembelian/delete/{{ $buy_medicines->id_pembelian }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
@@ -56,7 +58,7 @@
         </table>
 
         <div class="d-flex justify-content-end mt-5">
-            {{ $transaksi->links() }}
+            {{ $pembelian->links() }}
         </div>
 
     </div>
