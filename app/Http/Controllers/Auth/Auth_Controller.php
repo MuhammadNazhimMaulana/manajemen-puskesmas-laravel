@@ -63,7 +63,7 @@ class Auth_Controller extends Controller
             $request->session()->regenerate();
 
             // Store data in session
-            $request->session()->put('pengguna', [$pengguna->name, $pengguna->username]);
+            $request->session()->put('pengguna', [$pengguna->name, $pengguna->username, $pengguna->id]);
 
             return redirect()->intended('/');
         }

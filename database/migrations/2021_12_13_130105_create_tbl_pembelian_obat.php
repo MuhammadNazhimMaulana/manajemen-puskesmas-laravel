@@ -17,11 +17,11 @@ class CreateTblPembelianObat extends Migration
             $table->id('id_pembelian');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('transaksi_id');
-            $table->float('ppn', 8, 2);
-            $table->integer('jumlah_bayar');
-            $table->string('foto_bukti_bayar_obat');
-            $table->date('tgl_bayar');
-            $table->date('tgl_tenggat');
+            $table->float('ppn', 8, 2)->nullable();
+            $table->integer('jumlah_bayar')->nullable();
+            $table->string('foto_bukti_bayar_obat')->nullable();
+            $table->date('tgl_bayar')->nullable();
+            $table->date('tgl_tenggat')->nullable();
             $table->timestamps();
         });
     }

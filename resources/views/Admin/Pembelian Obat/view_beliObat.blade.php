@@ -26,7 +26,10 @@
         </div>
         @endif
 
-        <a href="/pembelian/create" class="btn btn-primary">Beli Obat</a>
+        <form action="/pembelian/create" method="POST" class="d-inline">
+            @csrf
+            <button class="btn btn-primary">Beli Obat</button>
+        </form>
         <table class="mt-3" width="100%">
             <thead>
                 <tr>
