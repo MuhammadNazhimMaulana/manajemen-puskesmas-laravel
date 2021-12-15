@@ -17,6 +17,7 @@ class CreateTblObat extends Migration
             $table->id('id_obat');
             $table->string('nama_obat');
             $table->integer('stok');
+            $table->bigInteger('harga_satuan');
             $table->date('tanggal_kadaluarsa');
             $table->string('perusahaan');
             $table->string('foto_obat');

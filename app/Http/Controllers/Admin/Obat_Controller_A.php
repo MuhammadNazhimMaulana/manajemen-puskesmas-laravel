@@ -42,6 +42,7 @@ class Obat_Controller_A extends Controller
             'stok' => 'required',
             'tanggal_kadaluarsa' => 'required',
             'perusahaan' => 'required',
+            'harga_satuan' => 'required',
             'foto_obat' => 'image|file|max:1024'
         ]);
 
@@ -79,6 +80,7 @@ class Obat_Controller_A extends Controller
             'stok' => 'required',
             'tanggal_kadaluarsa' => 'required',
             'perusahaan' => 'required',
+            'harga_satuan' => 'required',
             'foto_obat' => 'image|file|max:1024'
         ]);
 
@@ -112,5 +114,21 @@ class Obat_Controller_A extends Controller
         Obat_Model::where('id_obat', $id)->delete();
 
         return redirect('/obat')->with('danger', 'Obat Baru Berhasil Dihapus');
+    }
+
+    public function action(Request $request)
+    {
+        if ($request->input('action')) {
+            $action = $request->input('action');
+
+            if ($action == 'get_harga_obat') {
+
+                $data = Http::get("http://jsonplaceholder.typicode.com/posts?title=" . $request->input('nama_obat'));
+
+                return response()->json([
+                    'data_obat' => json_decode($data)
+                ]);
+            }
+        }
     }
 }

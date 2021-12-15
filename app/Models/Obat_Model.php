@@ -14,7 +14,7 @@ class Obat_Model extends Model
     protected $primaryKey = 'id_obat';
 
     // Fillable
-    protected $fillable = ['nama_obat', 'stok', 'tanggal_kadaluarsa', 'perusahaan', 'foto_obat', 'created_at', 'updated_at'];
+    protected $fillable = ['nama_obat', 'stok', 'tanggal_kadaluarsa', 'perusahaan', 'harga_satuan', 'foto_obat', 'created_at', 'updated_at'];
 
     // Inverse Relationships
     public function pasien_model()

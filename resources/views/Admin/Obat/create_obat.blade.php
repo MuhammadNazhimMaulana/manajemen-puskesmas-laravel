@@ -2,6 +2,8 @@
 
 @section('container')
 
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <div class="values">
 
     <div class="board d-flex justify-content-center">
@@ -10,8 +12,8 @@
                 @csrf
 
                 <div class="mb-3">
-                    <label for="nama_obat" class="form-label">Nama</label>
-                    <select class="form-select" name="nama_obat">
+                    <label for="nama_obat" class="form-label">Nama Obat</label>
+                    <select class="form-select" name="nama_obat" id="nama_obat">
                         @foreach ($medicines as $obat)
                             @if(old('nama_obat') == $obat->id)
                                 <option value="{{ $obat->title }}" selected>{{ $obat->title }}</option>
@@ -26,6 +28,16 @@
                     <label for="stok" class="form-label">Stok Obat</label>
                     <input type="number" name="stok" class="form-control @error('stok') is-invalid @enderror" id="stok" placeholder="1 2 3..." value="{{ old('stok') }}">
                     @error('stok')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="harga_satuan" class="form-label">Harga Satuan</label>
+                    <input type="number" name="harga_satuan" class="form-control @error('harga_satuan') is-invalid @enderror" id="harga_satuan" value="{{ old('harga_satuan') }}" readonly>
+                    @error('harga_satuan')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -55,7 +67,7 @@
                 <div class="mb-3">
                     <label for="foto_obat" class="form-label">Upload Gambar Obat</label>
                     <img class="img-preview img-fluid mb-3 col-sm-5">
-                    <input class="form-control @error('foto_obat') is-invalid @enderror" type="file" id="foto_obat" name="foto_obat" onchange="previewImage()">
+                    <input class="form-control @error('foto_obat') is-invalid @enderror" type="file" id="foto" name="foto_obat" onchange="previewImage()">
                     @error('foto_obat')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -68,24 +80,45 @@
         </div>
     </div>
 </div>
+@endsection
 
-<script>
+@section('script')
+<script type="text/javascript">
 
-    function previewImage()
-    {
-    const image = document.querySelector('#foto_obat');
-    const imgPreview = document.querySelector('.img-preview');
-
-    imgPreview.style.display = 'block';
-
-    const oFReader = new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-        oFReader.onload = function(oFREvent)
-        {
-            imgPreview.src = oFREvent.target.result;
-        }
+$.ajaxSetup({
+    headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
+});
+
+    $(document).ready(function() {
+
+    $('#nama_obat').change(function() {
+
+        var nama_obat = $('#nama_obat').val();
+
+        var action = 'get_harga_obat';
+
+        if (nama_obat != '') {
+            $.ajax({
+                url:"get_harga",
+                method: "GET",
+                data: {
+                    nama_obat: nama_obat,
+                    action: action
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    $('#harga_satuan').val(data.data_obat[0].id * 10000);
+                }
+            });
+
+        } else {
+            $('#harga_satuan').val('');
+        }
+    });
+
+    });
 </script>
 
 @endsection

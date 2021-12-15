@@ -2,6 +2,8 @@
 
 @section('container')
 
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <div class="values">
 
     <div class="board d-flex justify-content-center">
@@ -9,11 +11,12 @@
             <form action="/obat/update/{{ $obat->id_obat }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
+
                 <div class="mb-3">
-                    <label for="nama_obat" class="form-label">Nama</label>
-                    <select class="form-select" name="nama_obat">
+                    <label for="nama_obat" class="form-label">Nama Obat</label>
+                    <select class="form-select" name="nama_obat" id="nama_obat">
                         @foreach ($medicines as $medicine)
-                            @if(old('nama_obat', $obat->nama_obat) == $medicine->id)
+                            @if(old('nama_obat', $obat->nama_obat) == $medicine->title)
                                 <option value="{{ $medicine->title }}" selected>{{ $medicine->title }}</option>
                             @else
                                 <option value="{{ $medicine->title }}">{{ $medicine->title }}</option>
@@ -31,6 +34,17 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="harga_satuan" class="form-label">Harga Satuan</label>
+                    <input type="number" name="harga_satuan" class="form-control @error('harga_satuan') is-invalid @enderror" id="harga_satuan" value="{{ old('harga_satuan', $obat->harga_satuan) }}" readonly>
+                    @error('harga_satuan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
 
                 <div class="mb-3">
                     <label for="tanggal_kadaluarsa" class="form-label">Tanggal Kadaluarsa</label>
@@ -61,7 +75,7 @@
                         @else
                             <img class="img-preview img-fluid mb-3 col-sm-5">
                         @endif
-                    <input class="form-control @error('foto_obat') is-invalid @enderror" type="file" id="foto_obat" name="foto_obat" onchange="previewImage()">
+                    <input class="form-control @error('foto_obat') is-invalid @enderror" type="file" id="foto" name="foto_obat" onchange="previewImage()">
                     @error('foto_obat')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -74,24 +88,46 @@
         </div>
     </div>
 </div>
+@endsection
 
-<script>
+@section('script')
+{{-- Getting automatic value --}}
+<script type="text/javascript">
 
-    function previewImage()
-    {
-    const image = document.querySelector('#foto_obat');
-    const imgPreview = document.querySelector('.img-preview');
-
-    imgPreview.style.display = 'block';
-
-    const oFReader = new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-        oFReader.onload = function(oFREvent)
-        {
-            imgPreview.src = oFREvent.target.result;
-        }
+$.ajaxSetup({
+    headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
+});
+
+    $(document).ready(function() {
+
+    $('#nama_obat').change(function() {
+
+        var nama_obat = $('#nama_obat').val();
+
+        var action = 'get_harga_obat';
+
+        if (nama_obat != '') {
+            $.ajax({
+                url:"../get_harga",
+                method: "GET",
+                data: {
+                    nama_obat: nama_obat,
+                    action: action
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    $('#harga_satuan').val(data.data_obat[0].id * 10000);
+                }
+            });
+
+        } else {
+            $('#harga_satuan').val('');
+        }
+    });
+
+    });
 </script>
 
 @endsection

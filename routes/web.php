@@ -52,6 +52,7 @@ Route::prefix('/pendaftaran')->group(function () {
 // Obat Route
 Route::prefix('/obat')->group(function () {
     Route::get('/', [Obat_Controller_A::class, 'get_all']);
+    Route::get('/get_harga', [Obat_Controller_A::class, 'action']);
     Route::get('/create', [Obat_Controller_A::class, 'create_obat']);
     Route::post('/create', [Obat_Controller_A::class, 'store_obat']);
     Route::get('/update/{id}', [Obat_Controller_A::class, 'update_obat']);
@@ -92,6 +93,7 @@ Route::prefix('/pembelian')->group(function () {
 Route::prefix('/keranjang-obat')->group(function () {
     Route::get('/', [KeranjangObat_Controller_A::class, 'keranjang_view']);
     Route::get('/{id_pembelian}', [KeranjangObat_Controller_A::class, 'keranjang_pembelian']);
+    Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_A::class, 'action']);
     Route::post('/create', [KeranjangObat_Controller_A::class, 'add_keranjang']);
     Route::put('/update/{id}', [KeranjangObat_Controller_A::class, 'update_keranjang']);
     Route::delete('/delete/{id}', [KeranjangObat_Controller_A::class, 'delete_keranjang']);

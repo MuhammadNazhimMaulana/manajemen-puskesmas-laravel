@@ -47,5 +47,7 @@
     {{-- Custom JS --}}
     <script src="{{ asset('JS/main.js') }}"></script>
 
+    {{-- Content --}} 
+    @yield('script')
   </body>
 </html>

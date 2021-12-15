@@ -25,4 +25,19 @@ class KeranjangObat_Controller_A extends Controller
     public function add_keranjang()
     {
     }
+
+    // Getting the data of medicine
+    public function action(Request $request)
+    {
+        if ($request->input('action')) {
+            $action = $request->input('action');
+
+            if ($action == 'get_cost') {
+
+                $data = Obat_Model::where('id_obat', $request->input('obat_id'))->first();
+
+                return response($data);
+            }
+        }
+    }
 }

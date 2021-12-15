@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <div class="values">
 
     <div class="board">
@@ -19,7 +21,7 @@
         <div class="d-flex justify-content-evenly">
             <div class="col-md-5 mb-3">
                 <label for="obat_id" class="form-label">Nama Obat</label>
-                <select class="form-select" name="obat_id">
+                <select class="form-select" name="obat_id" id="obat_id">
                     @foreach ($medicines as $medicine)
                         @if(old('obat_id') == $medicine->id_obat)
                             <option value="{{ $medicine->id_obat }}" selected>{{ $medicine->nama_obat }}</option>
@@ -32,7 +34,7 @@
             </div>
 
             {{-- Input Id Pembelian --}}
-                <input type="hidden" name="pembelian_id" value="{{ $pembelian->id_pembelian }}">
+                <input type="hidden" name="pembelian_id" id="pembelian_id" value="{{ $pembelian->id_pembelian }}">
 
             <div class="col-md-5 mb-3">
                 <label for="pasien_id" class="form-label">Jadwal Periksa</label>
@@ -86,4 +88,50 @@
 
     </div>
 </div>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+
+$.ajaxSetup({
+    headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+    $(document).ready(function() {
+    
+    // Getting prize of medicine and times it with how many that person buy
+    $('#obat_id').change(function() {
+
+        var obat_id = $('#obat_id').val();
+
+        var action = 'get_cost';
+
+        var id_pembelian = $('#pembelian_id').val();
+
+        var jml_beli_obat = $('#jml_beli_obat').val();
+
+        if (obat_id != '') {
+            $.ajax({
+                url: id_pembelian + "/harga_obat",
+                method: "GET",
+                data: {
+                    obat_id: obat_id,
+                    action: action
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    $('#harga_obat').val(data.harga_satuan * jml_beli_obat);
+                }
+            });
+
+        } else {
+            $('#harga_obat').val('');
+        }
+    });
+
+    });
+</script>
+
 @endsection
