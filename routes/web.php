@@ -84,7 +84,7 @@ Route::prefix('/transaksi')->group(function () {
 Route::prefix('/pembelian')->group(function () {
     Route::get('/', [PembelianObat_Controller_A::class, 'get_all']);
     Route::post('/create', [PembelianObat_Controller_A::class, 'store_pembelian']);
-    Route::get('/payment/{id}', [PembelianObat_Controller_A::class, 'payment']);
+    Route::post('/payment/{id}', [PembelianObat_Controller_A::class, 'payment']);
     Route::put('/payment/{id}', [PembelianObat_Controller_A::class, 'payment_process']);
     Route::delete('/delete/{id}', [PembelianObat_Controller_A::class, 'delete_pembelian']);
 });

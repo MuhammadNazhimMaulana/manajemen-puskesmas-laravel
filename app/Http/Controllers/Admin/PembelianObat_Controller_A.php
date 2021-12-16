@@ -44,4 +44,17 @@ class PembelianObat_Controller_A extends Controller
 
         return redirect('/keranjang-obat/' . $id_pembelian)->with('success', 'Keranjang Baru Berhasil Dibuat');
     }
+
+    public function payment(int $id, Request $request)
+    {
+        $pembelian = PembelianObat_Model::where('id_pembelian', $id)->first();
+
+        $data_pembelian = [
+            "pembelian" => $pembelian,
+            "bayar" => $request->input('jml_bayaran'),
+            "title" => "Pembelian Obat"
+        ];
+
+        return view('Admin/Pembelian Obat/payment_obat', $data_pembelian);
+    }
 }
