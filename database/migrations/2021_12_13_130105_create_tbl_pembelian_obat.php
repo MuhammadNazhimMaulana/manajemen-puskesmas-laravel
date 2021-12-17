@@ -20,6 +20,7 @@ class CreateTblPembelianObat extends Migration
             $table->float('ppn', 8, 2)->nullable();
             $table->integer('jumlah_bayar')->nullable();
             $table->string('foto_bukti_bayar_obat')->nullable();
+            $table->string('status_pembayaran')->nullable();
             $table->date('tgl_bayar')->nullable();
             $table->date('tgl_tenggat')->nullable();
             $table->timestamps();

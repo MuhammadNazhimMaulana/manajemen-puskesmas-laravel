@@ -19,6 +19,18 @@
             {{ session('success') }}
         </div>
         @endif
+        
+        @if(session()->has('lunas'))
+        <div class="alert alert-success" role="alert">
+            {{ session('lunas') }}
+        </div>
+        @endif
+
+        @if(session()->has('belum_lunas'))
+        <div class="alert alert-success" role="alert">
+            {{ session('belum_lunas') }}
+        </div>
+        @endif
 
         @if(session()->has('danger'))
         <div class="alert alert-danger" role="alert">

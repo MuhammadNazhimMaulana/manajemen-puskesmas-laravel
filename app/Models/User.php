@@ -45,6 +45,11 @@ class User extends Authenticatable
     ];
 
     // Inverse Relationships
+    public function laporan_model()
+    {
+        return $this->hasOne(LaporanPengunjung_Model::class, 'user_id');
+    }
+
     public function pendaftaran_model()
     {
         return $this->hasOne(Pendaftaran_Model::class, 'user_id');

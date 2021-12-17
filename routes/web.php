@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
+use App\Http\Controllers\Admin\{LaporanPengunjung_Controller_A, KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\Auth_Controller;
 
 
@@ -84,6 +84,7 @@ Route::prefix('/transaksi')->group(function () {
 Route::prefix('/pembelian')->group(function () {
     Route::get('/', [PembelianObat_Controller_A::class, 'get_all']);
     Route::post('/create', [PembelianObat_Controller_A::class, 'store_pembelian']);
+    Route::get('/payment/{id}', [PembelianObat_Controller_A::class, 'payment_view']);
     Route::post('/payment/{id}', [PembelianObat_Controller_A::class, 'payment']);
     Route::put('/payment/{id}', [PembelianObat_Controller_A::class, 'payment_process']);
     Route::delete('/delete/{id}', [PembelianObat_Controller_A::class, 'delete_pembelian']);
