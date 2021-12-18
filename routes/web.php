@@ -100,6 +100,16 @@ Route::prefix('/keranjang-obat')->group(function () {
     Route::delete('/delete/{id}', [KeranjangObat_Controller_A::class, 'delete_keranjang']);
 });
 
+// Laporan Pengunjung Route
+Route::prefix('/laporan')->group(function () {
+    Route::get('/', [LaporanPengunjung_Controller_A::class, 'get_all']);
+    Route::get('/create', [LaporanPengunjung_Controller_A::class, 'create_laporan']);
+    Route::post('/create', [LaporanPengunjung_Controller_A::class, 'store_laporan']);
+    Route::get('/update/{id}', [LaporanPengunjung_Controller_A::class, 'update_laporan']);
+    Route::put('/update/{id}', [LaporanPengunjung_Controller_A::class, 'update_laporan_process']);
+    Route::delete('/delete/{id}', [LaporanPengunjung_Controller_A::class, 'delete_laporan']);
+});
+
 // Auth
 Route::get('/login', [Auth_Controller::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [Auth_Controller::class, 'authLogin']);

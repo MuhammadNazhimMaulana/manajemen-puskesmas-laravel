@@ -21,8 +21,6 @@ class CreateTblLaporanPengunjung extends Migration
             $table->bigInteger('jumlah_transaksi');
             $table->date('periode_awal');
             $table->date('periode_akhir');
-            $table->string('nama_admin');
-
             $table->timestamps();
         });
     }
