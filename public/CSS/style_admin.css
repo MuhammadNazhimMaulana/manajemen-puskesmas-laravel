@@ -57,7 +57,7 @@ body {
     cursor: pointer;
 }
 
-#menu .items li:nth-child(1) {
+#menu .items li.active {
     border-left: 4px solid #fff;
 }
 

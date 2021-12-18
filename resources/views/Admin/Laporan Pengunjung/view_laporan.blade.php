@@ -44,6 +44,7 @@
                     <td>{{ $report->jumlah_transaksi }}</td>
                     <td class="aksi">
                         <a href="/laporan/update/{{ $report->id_laporan }}">Edit</a>
+                        <a href="/laporan/pdf/{{ $report->id_laporan }}" target="_blank">PDF</a>
                         <form action="/laporan/delete/{{ $report->id_laporan }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
