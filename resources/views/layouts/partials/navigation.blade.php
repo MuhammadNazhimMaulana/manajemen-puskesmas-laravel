@@ -12,12 +12,12 @@
       <i class="far fa-bell"></i>
       <img src="{{ asset('Images/Bonevian.png') }}">
       @auth
-        <form action="/logout" method="POST">
+        <form action="/admin/logout" method="POST">
           @csrf
           <button class="ms-4 border-0" type="submit">Logout, {{ auth()->user()->name }}</button>
         </form>
       @else
       {{-- Jika Belum Login --}}
-        <a class="ms-4" href="/login">Login</a>
+        <a class="ms-4" href="/admin/login">Login</a>
       @endauth
     </div>

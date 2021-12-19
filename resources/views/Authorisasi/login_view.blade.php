@@ -23,7 +23,7 @@
         @endif
 
         <div class="card-text">
-            <form action="/login" method="POST">
+            <form action="/admin/login" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="username">Username</label>

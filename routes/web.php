@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{LaporanPengunjung_Controller_A, KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\Auth_Controller;
+use App\Http\Controllers\User\Utama_Controller_U;
 
 
 /*
@@ -16,8 +17,12 @@ use App\Http\Controllers\Auth\Auth_Controller;
 |
 */
 
+// Route User
+Route::get('/dashboard_user', [Utama_Controller_U::class, 'main']);
+
 // Main Route
 Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
+
 
 // Dokter Route
 Route::prefix('/dokter')->group(function () {
@@ -111,9 +116,12 @@ Route::prefix('/laporan')->group(function () {
     Route::delete('/delete/{id}', [LaporanPengunjung_Controller_A::class, 'delete_laporan']);
 });
 
+
 // Auth
-Route::get('/login', [Auth_Controller::class, 'login'])->name('login')->middleware('guest');
-Route::post('/login', [Auth_Controller::class, 'authLogin']);
-Route::post('/logout', [Auth_Controller::class, 'logout']);
-Route::get('/register', [Auth_Controller::class, 'register'])->middleware('guest');
-Route::post('/register', [Auth_Controller::class, 'storeRegister']);
+Route::prefix('/admin')->group(function () {
+    Route::get('/login', [Auth_Controller::class, 'login'])->name('login')->middleware('guest');
+    Route::post('/login', [Auth_Controller::class, 'authLogin']);
+    Route::post('/logout', [Auth_Controller::class, 'logout']);
+    Route::get('/register', [Auth_Controller::class, 'register'])->middleware('guest');
+    Route::post('/register', [Auth_Controller::class, 'storeRegister']);
+});

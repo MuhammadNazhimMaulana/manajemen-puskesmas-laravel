@@ -5,14 +5,14 @@
     </div>
 
     <div class="items">
-        <li class="active"><i class="fad fa-chart-pie-alt"></i><a href="#">Dashboard</a></li>
-        <li><i class="fab fa-uikit"></i><a href="#">Dokter</a></li>
-        <li><i class="fas fa-th-large"></i><a href="#">Laporan</a></li>
-        <li><i class="fas fa-th-large"></i><a href="#">Obat</a></li>
-        <li><i class="fas fa-edit"></i><a href="#">Pendaftaran</a></li>
-        <li><i class="fab fa-cc-visa"></i><a href="#">Pasien</a></li>
-        <li><i class="fas fa-chart-line"></i><a href="#">Pembelian Obat</a></li>
-        <li><i class="fab fa-cc-visa"></i><a href="#">Ruang</a></li>
-        <li><i class="fas fa-humberger"></i><a href="#">Transaksi</a></li>
+        <li class="{{ ($title == "Dashboard") ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i><a href="/">Dashboard</a></li>
+        <li class="{{ ($title == "Dokter") ? 'active' : '' }}"><i class="fas fa-user-md"></i><a href="/dokter">Dokter</a></li>
+        <li class="{{ ($title == "Laporan Pengunjung") ? 'active' : '' }}"><i class="fas fa-file"></i><a href="/laporan">Laporan</a></li>
+        <li class="{{ ($title == "Obat") ? 'active' : '' }}"><i class="fas fa-tablets"></i><a href="/obat">Obat</a></li>
+        <li class="{{ ($title == "Pendaftaran") ? 'active' : '' }}"><i class="fas fa-registered"></i><a href="/pendaftaran">Pendaftaran</a></li>
+        <li class="{{ ($title == "Pasien") ? 'active' : '' }}"><i class="fas fa-procedures"></i><a href="/pasien">Pasien</a></li>
+        <li class="{{ ($title == "Pembelian Obat") ? 'active' : '' }}"><i class="fas fa-shopping-cart"></i><a href="/pembelian">Pembelian Obat</a></li>
+        <li class="{{ ($title == "Ruang") ? 'active' : '' }}"><i class="fas fa-hospital"></i><a href="/ruang">Ruang</a></li>
+        <li class="{{ ($title == "Transaksi") ? 'active' : '' }}"><i class="fas fa-store"></i><a href="/transaksi">Transaksi</a></li>
     </div>
 </section>

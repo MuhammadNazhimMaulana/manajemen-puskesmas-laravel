@@ -46,7 +46,7 @@ class Auth_Controller extends Controller
         $request->session()->flash('success', 'Registrasi tekah Berhasil Silakan Login');
 
         // Redirect to Login
-        return redirect('/login');
+        return redirect('/admin/login');
     }
 
     // Auth Login (Cek untuk Login)
@@ -80,6 +80,6 @@ class Auth_Controller extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/admin/login');
     }
 }

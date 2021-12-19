@@ -6,7 +6,7 @@
     <div class="card-body">
         <h1 class="card-title text-center"> {{ $title }} Admin</h1>
         <div class="card-text">
-            <form action="/register" method="POST">
+            <form action="/admin/register" method="POST">
                 @csrf
                 <div class="form-group mt-3">
                     <label for="name">Nama</label>
