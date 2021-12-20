@@ -17,4 +17,13 @@ class Auth_Controller_U extends Controller
 
         return view('User/Authorisasi/login_user', $data);
     }
+
+    public function register()
+    {
+        $data = [
+            "title" => "Register User",
+        ];
+
+        return view('User/Authorisasi/register_user', $data);
+    }
 }

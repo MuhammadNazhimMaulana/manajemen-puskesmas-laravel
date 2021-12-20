@@ -20,6 +20,7 @@ use App\Http\Controllers\User\Utama_Controller_U;
 // Route User
 Route::get('/dashboard_user', [Utama_Controller_U::class, 'main']);
 Route::get('/login_user', [Auth_Controller_U::class, 'login']);
+Route::get('/register_user', [Auth_Controller_U::class, 'register']);
 
 // Main Route
 Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');

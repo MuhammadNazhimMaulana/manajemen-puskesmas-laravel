@@ -31,7 +31,7 @@
     <div class="container mt-5 pr-5">
         <div class="row  align-items-center text-center text-md-left">
             <div class="col-md-6 pr-md-5" data-aos="zoom-in">
-                <img src="" width="100%" alt="">
+                <img src="{{ asset('Images/Doctors.png') }}" width="100%" alt="">
             </div>
             <div class="col-md-6 pl-md-5 content" data-aos="fade-left">
                 <h1><span>Tetap </span> aman, <span>tetap</span> sehat.</h1>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class=" col-md-6 d-none d-md-block" data-aos="fade-left">
-                <img src="" width="100%" alt="">
+                <img src="{{ asset('Images/about.png') }}" width="100%" alt="">
             </div>
         </div>
     </div>
