@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{LaporanPengunjung_Controller_A, KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\{Auth_Controller_U, Auth_Controller};
-use App\Http\Controllers\User\Utama_Controller_U;
+use App\Http\Controllers\User\{User_Controller_U, Utama_Controller_U};
 
 
 /*
@@ -20,10 +20,14 @@ use App\Http\Controllers\User\Utama_Controller_U;
 // Route User
 Route::get('/dashboard_user', [Utama_Controller_U::class, 'main']);
 Route::get('/login_user', [Auth_Controller_U::class, 'login']);
+Route::post('/login_user', [Auth_Controller_U::class, 'authLogin']);
+Route::post('/logout_user', [Auth_Controller_U::class, 'logout']);
 Route::get('/register_user', [Auth_Controller_U::class, 'register']);
+Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
 
 // Main Route
 Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
+Route::get('/', [User_Controller_U::class, 'dashboard'])->middleware('auth');
 
 
 // Dokter Route
