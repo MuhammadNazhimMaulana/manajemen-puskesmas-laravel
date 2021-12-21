@@ -38,7 +38,7 @@
                 </div>
             
                 <div class="daftar">
-                    Tidak Punya Akun? <a href="/register">Ayo Daftar</a>
+                    Tidak Punya Akun? <a href="/admin/register">Ayo Daftar</a>
                 </div>
             </form>
         </div>

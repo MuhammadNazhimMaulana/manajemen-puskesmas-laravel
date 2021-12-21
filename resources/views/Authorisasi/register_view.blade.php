@@ -29,7 +29,7 @@
                 </div>
             
                 <div class="daftar">
-                    Sudah Punya Akun? <a href="/login">Ayo Login</a>
+                    Sudah Punya Akun? <a href="/admin/login">Ayo Login</a>
                 </div>
             </form>            
         </div>

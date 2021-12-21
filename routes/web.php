@@ -25,6 +25,9 @@ Route::post('/logout_user', [Auth_Controller_U::class, 'logout']);
 Route::get('/register_user', [Auth_Controller_U::class, 'register']);
 Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
 
+// Route personal user
+Route::get('/profile', [User_Controller_U::class, 'profile']);
+
 // Main Route
 Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
 Route::get('/', [User_Controller_U::class, 'dashboard'])->middleware('auth');

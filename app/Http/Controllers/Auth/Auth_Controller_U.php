@@ -80,6 +80,6 @@ class Auth_Controller_U extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect('/login_user');
     }
 }
