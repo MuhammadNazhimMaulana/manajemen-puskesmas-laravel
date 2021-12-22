@@ -37,7 +37,7 @@ class Transaksi_Controller_U extends Controller
     {
 
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'YOUR_SERVER_KEY';
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-TQY02mTXOhm-WoCWAKLNj8LX';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
@@ -66,8 +66,9 @@ class Transaksi_Controller_U extends Controller
         $data = [
             "title" => "Transaksi",
             "transaksi" => $transaksi,
+            "snapToken" => $snapToken
         ];
 
-        return view('Admin/Transaksi/update_transaksi', $data);
+        return view('User/Transaksi/update_transaksi_user', $data);
     }
 }
