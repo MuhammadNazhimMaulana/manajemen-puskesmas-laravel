@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{LaporanPengunjung_Controller_A, KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\{Auth_Controller_U, Auth_Controller};
-use App\Http\Controllers\User\{User_Controller_U, Utama_Controller_U};
+use App\Http\Controllers\User\{Transaksi_Controller_U, Dokter_Controller_U, User_Controller_U, Utama_Controller_U};
 
 
 /*
@@ -27,6 +27,18 @@ Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
 
 // Route personal user
 Route::get('/profile', [User_Controller_U::class, 'profile']);
+
+// Route dokter user
+Route::prefix('/dokter_user')->group(function () {
+    Route::get('/', [Dokter_Controller_U::class, 'get_all']);
+});
+
+// Transaksi Route User
+Route::prefix('/transaksi_user')->group(function () {
+    Route::get('/', [Transaksi_Controller_U::class, 'get_all']);
+    Route::get('/{id}', [Transaksi_Controller_U::class, 'view_transaksi']);
+    Route::get('/pembayaran/{id}', [Transaksi_Controller_U::class, 'pembayaran_transaksi']);
+});
 
 // Main Route
 Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
