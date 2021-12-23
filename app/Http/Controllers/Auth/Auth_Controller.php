@@ -32,8 +32,9 @@ class Auth_Controller extends Controller
     {
         $registerData = $request->validate([
             'username' => 'required|min:3|max:255',
-            'name' => 'required',
-            'email' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'no_hp' => 'required',
             'password' => 'required|min:5|max:255',
         ]);
 
@@ -63,7 +64,7 @@ class Auth_Controller extends Controller
             $request->session()->regenerate();
 
             // Store data in session
-            $request->session()->put('pengguna', [$pengguna->name, $pengguna->username, $pengguna->id]);
+            $request->session()->put('pengguna', [$pengguna->first_name, $pengguna->username, $pengguna->id]);
 
             return redirect()->intended('/');
         }

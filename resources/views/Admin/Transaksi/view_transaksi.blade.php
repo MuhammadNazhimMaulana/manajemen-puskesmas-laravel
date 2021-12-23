@@ -39,7 +39,7 @@
             <tbody>
                 @foreach ($transaksi as $transactions)
                 <tr>
-                    <td>{{ $transactions->user->name }}</td>
+                    <td>{{ $transactions->user->first_name }}</td>
                     <td>{{ $transactions->pasien_model->jadwal_periksa}}</td>
                     <td>{{ $transactions->ket_pembayaran }}</td>
                     <td class="aksi">

@@ -39,7 +39,7 @@
             <tbody>
                 @foreach ($pasien as $people)
                 <tr>
-                    <td>{{ $people->user->name }}</td>
+                    <td>{{ $people->user->first_name }}</td>
                     <td>{{ $people->pendaftaran_model->kebutuhan}}</td>
                     <td>{{ $people->keterangan }}</td>
                     <td class="aksi">

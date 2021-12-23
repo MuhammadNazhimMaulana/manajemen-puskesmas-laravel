@@ -35,9 +35,11 @@ class Transaksi_Controller_U extends Controller
 
     public function pembayaran_transaksi(int $id)
     {
+        // Getting value of transaction
+        $transaksi = Transaksi_Model::where('id_transaksi', $id)->first();
 
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-TQY02mTXOhm-WoCWAKLNj8LX';
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
@@ -48,20 +50,17 @@ class Transaksi_Controller_U extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => 10000,
+                'gross_amount' => $transaksi->biaya_pembayaran,
             ),
             'customer_details' => array(
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
+                'first_name' => $transaksi->user->first_name,
+                'last_name' => $transaksi->user->last_name,
                 'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
+                'phone' => $transaksi->user->no_hp,
             ),
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        // Getting value of transaction
-        $transaksi = Transaksi_Model::where('id_transaksi', $id)->first();
 
         $data = [
             "title" => "Transaksi",

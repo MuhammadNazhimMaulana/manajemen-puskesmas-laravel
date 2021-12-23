@@ -40,7 +40,7 @@
             <tbody>
                 @foreach ($pendaftar as $daftar)
                 <tr>
-                    <td>{{ $daftar->user->name }}</td>
+                    <td>{{ $daftar->user->first_name }}</td>
                     <td>{{ $daftar->dokter_model->nama_dokter }}</td>
                     <td>{{ $daftar->sakit }}</td>
                     <td>{{ $daftar->kebutuhan }}</td>

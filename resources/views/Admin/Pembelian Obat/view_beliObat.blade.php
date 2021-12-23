@@ -55,7 +55,7 @@
             <tbody>
                 @foreach ($pembelian as $buy_medicines)
                 <tr>
-                    <td>{{ $buy_medicines->user->name }}</td>
+                    <td>{{ $buy_medicines->user->first_name }}</td>
                     <td>{{ $buy_medicines->transaksi_model->tanggal_bayar}}</td>
                     <td>{{ $buy_medicines->ppn }}</td>
                     <td>{{ $buy_medicines->jumlah_bayar }}</td>
