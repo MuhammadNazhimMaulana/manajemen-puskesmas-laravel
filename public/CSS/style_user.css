@@ -325,6 +325,10 @@ header .fa-bars {
     flex-wrap: wrap;
 }
 
+.form-control {
+    font-size: 1.7rem;
+}
+
 .contact form .inputBox input,
 select {
     height: 3.5rem;

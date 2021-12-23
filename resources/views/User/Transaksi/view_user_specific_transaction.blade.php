@@ -21,10 +21,13 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="box-back">
-                                    <h1 class="text-center mt-3">{{ $transaksi->user->name }}</h1>
+                                    <h1 class="text-center mt-3">{{ $transaksi->user->first_name }}</h1>
                                     <hr class="gelap">
                                     <div class="book-information">
-                                        <a href="/transaksi_user" class="back">Kembali ke Daftar</a>
+                                        <div class="d-flex justify-content-between">
+                                            <a href="/transaksi_user" class="back">Kembali ke Daftar</a>
+                                            <a href="/transaksi_user/pembayaran/{{ $transaksi->id_transaksi }}" class="back">Menuju Pembayaran</a>
+                                        </div>
                                         <div class="mt-3 mb-3 row">
                                             <label for="Editor" class="col-sm-2 col-form-label">Biaya Pembayaran</label>
                                             <div class="col-sm-10">

@@ -8,31 +8,71 @@ src="https://app.sandbox.midtrans.com/snap/snap.js"
 data-client-key="SB-Mid-client-NgiArnTP4ZvhamTm"></script>
 <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
 
-<section class="transaksi" style="margin-top: 80px;">
-    <div class="container">
-        <div class="box-container">
-            <div class="box" data-aos="fade-up">
-                <h1 class="text-center mb-5">Transaksi Anda</h1>
-                <div class="col-md-12 tampung">
-                  
-                  {{-- <input type="text" id="snapToken" value="{{ $snapToken }}" readonly> --}}
-
-                  <button id="pay-button">Pay!</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="transaksi_detail" style="margin-top: 50px;">
+  <div class="container">
+      <div class="box-container">
+          <div class="box" data-aos="fade-up">
+              <div class="container mb-5 my-3 py-5">
+                  <div class="col-md-12">
+                      <div class="row latar" id="bookmain">
+                          <div class="col-sm-12">
+                              <div class="box-back">
+                                  <h1 class="text-center mt-3">Pembayaran</h1>
+                                  <hr class="gelap">
+                                  <div class="book-information">
+                                      <div class="mt-3 mb-5 row">
+                                          <label for="Editor" class="col-sm-2 col-form-label">Biaya Pembayaran</label>
+                                          <div class="col-sm-10">
+                                              <input type="text" class="form-control" id="Editor" readonly value="{{ $transaksi->biaya_pembayaran }}">
+                                          </div>
+                                      </div>
+                                      <div class="mb-5 row">
+                                          <label for="Editor" class="col-sm-2 col-form-label">Jadwal Periksa</label>
+                                          <div class="col-sm-10">
+                                              <input type="text" class="form-control" id="Editor" readonly value="{{ $transaksi->pasien_model->jadwal_periksa }}">
+                                          </div>
+                                      </div>
+                                      <div class="d-flex justify-content-center">
+                                        <button class="tombol-beli button me-3" id="pay-button">Bayar</button>
+                                        <a href="/transaksi_user/{{ $transaksi->id_transaksi }}"><button class="tombol-beli button">Kembali</button></a>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </section>
 
+{{-- <input type="text" id="snapToken" value="{{ $snapToken }}" readonly> --}}
+
 <script type="text/javascript">
-  // For example trigger on button clicked, or any time you need
-  var payButton = document.getElementById('pay-button');
-  payButton.addEventListener('click', function () {
-    // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-    window.snap.pay('c67e684f-4946-431a-a35b-8c4738ed0156');
-    // customer will be redirected after completing payment pop-up
-  });
+      // For example trigger on button clicked, or any time you need
+      var payButton = document.getElementById('pay-button');
+      payButton.addEventListener('click', function () {
+        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+        window.snap.pay('{{ $snapToken }}', {
+          onSuccess: function(result){
+            /* You may add your own implementation here */
+            alert("payment success!"); console.log(result);
+          },
+          onPending: function(result){
+            /* You may add your own implementation here */
+            alert("wating your payment!"); console.log(result);
+          },
+          onError: function(result){
+            /* You may add your own implementation here */
+            alert("payment failed!"); console.log(result);
+          },
+          onClose: function(){
+            /* You may add your own implementation here */
+            alert('you closed the popup without finishing the payment');
+          }
+        })
+      });
 </script>
 
 @endsection
