@@ -43,6 +43,7 @@ Route::prefix('/pembelian_user')->group(function () {
 Route::prefix('/keranjang-obat-user')->group(function () {
     Route::get('/', [KeranjangObat_Controller_U::class, 'keranjang_view']);
     Route::get('/{id_pembelian}', [KeranjangObat_Controller_U::class, 'keranjang_pembelian']);
+    Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_U::class, 'action']);
 });
 
 // Transaksi Route User

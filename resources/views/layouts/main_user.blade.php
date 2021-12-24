@@ -51,7 +51,9 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('JS/utama.js') }}"></script>
-
+    
+    {{-- Content --}} 
+    @yield('script')
 
     <script>
         AOS.init({

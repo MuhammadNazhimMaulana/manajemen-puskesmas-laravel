@@ -44,7 +44,6 @@
                                 @endif
                             @endforeach
                         </select>
-
                     </div>
 
                     {{-- Input Id Pembelian --}}

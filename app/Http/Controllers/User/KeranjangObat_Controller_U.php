@@ -27,4 +27,19 @@ class KeranjangObat_Controller_U extends Controller
 
         return view('User/Keranjang Obat/keranjang_obat_user', $data);
     }
+
+    // Getting the data of medicine
+    public function action(Request $request)
+    {
+        if ($request->input('action')) {
+            $action = $request->input('action');
+
+            if ($action == 'get_cost') {
+
+                $data = Obat_Model::where('id_obat', $request->input('obat_id'))->first();
+
+                return response($data);
+            }
+        }
+    }
 }
