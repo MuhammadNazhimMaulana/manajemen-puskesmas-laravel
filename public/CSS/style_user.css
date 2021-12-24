@@ -1054,3 +1054,9 @@ header .fa-times {
 .tombol_ubah a:hover {
     color: rgba(255, 255, 255, 1);
 }
+
+/* Table */
+.table {
+    border: 1px solid !important;
+    border-color: black;
+}

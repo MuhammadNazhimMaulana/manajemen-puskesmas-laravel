@@ -55,7 +55,7 @@ class Transaksi_Controller_U extends Controller
             'customer_details' => array(
                 'first_name' => $transaksi->user->first_name,
                 'last_name' => $transaksi->user->last_name,
-                'email' => 'budi.pra@example.com',
+                'email' => $transaksi->user->email,
                 'phone' => $transaksi->user->no_hp,
             ),
         );
@@ -65,7 +65,8 @@ class Transaksi_Controller_U extends Controller
         $data = [
             "title" => "Transaksi",
             "transaksi" => $transaksi,
-            "snapToken" => $snapToken
+            "snapToken" => $snapToken,
+            "params" => $params["transaction_details"]["order_id"]
         ];
 
         return view('User/Transaksi/update_transaksi_user', $data);

@@ -25,14 +25,18 @@ class PembelianObat_Controller_U extends Controller
     public function store_pembelian_user(Request $request, Transaksi_Model $transaksi)
     {
         // Getting name of cashier kasir nanti bisa nullable
-        $kasir = $request->session()->get('pengguna');
+        $pengguna = $request->session()->get('pengguna');
 
         // Getting transaksi_id
-        $transaksi_pengguna = $transaksi->where('user_id', $kasir[2])->where('ket_pembayaran', 'Lunas')->first();
+        $transaksi_pengguna = $transaksi->where('user_id', $pengguna[2])->where('ket_pembayaran', 'Lunas')->first();
+
+        if ($transaksi_pengguna == null) {
+            return redirect('/pembelian_user')->with('gagal', 'Anda belum melakukan pemeriksaan');
+        }
 
         // Data Pembelian
         $data_pembelian = [
-            'user_id' => $kasir[2],
+            'user_id' => $pengguna[2],
             'transaksi_id' => $transaksi_pengguna->id_transaksi,
         ];
 

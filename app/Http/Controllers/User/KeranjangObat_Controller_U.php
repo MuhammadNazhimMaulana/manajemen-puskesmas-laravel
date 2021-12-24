@@ -25,6 +25,6 @@ class KeranjangObat_Controller_U extends Controller
             "total_beli" => $total_beli
         ];
 
-        return view('Admin/Keranjang Obat/keranjang_obat', $data);
+        return view('User/Keranjang Obat/keranjang_obat_user', $data);
     }
 }

@@ -20,23 +20,29 @@ data-client-key="SB-Mid-client-NgiArnTP4ZvhamTm"></script>
                                   <h1 class="text-center mt-3">Pembayaran</h1>
                                   <hr class="gelap">
                                   <div class="book-information">
+                                    <form action="/transaksi_user/payment/{{ $transaksi->id_transaksi }}" method="POST">
+                                      @csrf
                                       <div class="mt-3 mb-5 row">
                                           <label for="Editor" class="col-sm-2 col-form-label">Biaya Pembayaran</label>
                                           <div class="col-sm-10">
-                                              <input type="text" class="form-control" id="Editor" readonly value="{{ $transaksi->biaya_pembayaran }}">
+                                              <input type="text" class="form-control" readonly value="{{ $transaksi->biaya_pembayaran }}">
                                           </div>
                                       </div>
                                       <div class="mb-5 row">
                                           <label for="Editor" class="col-sm-2 col-form-label">Jadwal Periksa</label>
                                           <div class="col-sm-10">
-                                              <input type="text" class="form-control" id="Editor" readonly value="{{ $transaksi->pasien_model->jadwal_periksa }}">
+                                              <input type="text" class="form-control" readonly value="{{ $transaksi->pasien_model->jadwal_periksa }}">
                                           </div>
                                       </div>
+                                      {{-- Order id --}}
+                                      <input type="hidden" class="form-control" name="order_id" readonly value="{{ $params }}">
+                                    </form>
+                                    
                                       <div class="d-flex justify-content-center">
-                                        <button class="tombol-beli button me-3" id="pay-button">Bayar</button>
+                                        <button class="tombol-beli button me-3" id="pay-button">Checkout</button>
                                         <a href="/transaksi_user/{{ $transaksi->id_transaksi }}"><button class="tombol-beli button">Kembali</button></a>
                                     </div>
-                                  </div>
+                                </div>
                               </div>
                           </div>
                       </div>
