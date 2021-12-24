@@ -48,4 +48,40 @@ class PembelianObat_Controller_U extends Controller
 
         return redirect('/keranjang-obat-user/' . $id_pembelian)->with('success', 'Keranjang Baru Berhasil Dibuat');
     }
+
+    public function payment(int $id, Request $request)
+    {
+        $pembelian = PembelianObat_Model::where('id_pembelian', $id)->first();
+
+        $data_pembelian = [
+            'user_id' => $pembelian->user_id,
+            'transaksi_id' => $pembelian->transaksi_id,
+            'jumlah_bayar' => $request->input('jml_bayaran'),
+        ];
+
+        PembelianObat_Model::where('id_pembelian', $pembelian->id_pembelian)
+            ->update($data_pembelian);
+
+        return redirect('/pembelian_user/payment/' . $pembelian->id_pembelian)->with('success', 'Berhasil isi Keranjang Tinggal Pembayaran');
+    }
+
+    public function payment_view(int $id, Carbon $carbon)
+    {
+        $pembelian = PembelianObat_Model::where('id_pembelian', $id)->first();
+
+        // Today's Date
+        $today = $carbon->today()->toDateString();
+
+        // Deafult Deadline
+        $deadline = $carbon->tomorrow()->toDateString();
+
+        $data_pembelian = [
+            "pembelian" => $pembelian,
+            "today" => $today,
+            "deadline" => $deadline,
+            "title" => "Pembelian Obat"
+        ];
+
+        return view('Admin/Pembelian Obat/payment_obat', $data_pembelian);
+    }
 }

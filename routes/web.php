@@ -37,6 +37,8 @@ Route::prefix('/dokter_user')->group(function () {
 Route::prefix('/pembelian_user')->group(function () {
     Route::get('/', [PembelianObat_Controller_U::class, 'get_all']);
     Route::post('/create', [PembelianObat_Controller_U::class, 'store_pembelian_user']);
+    Route::get('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_view']);
+    Route::post('/payment/{id}', [PembelianObat_Controller_U::class, 'payment']);
 });
 
 // Keranjang Pemeblian Obat User Route
@@ -44,6 +46,9 @@ Route::prefix('/keranjang-obat-user')->group(function () {
     Route::get('/', [KeranjangObat_Controller_U::class, 'keranjang_view']);
     Route::get('/{id_pembelian}', [KeranjangObat_Controller_U::class, 'keranjang_pembelian']);
     Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_U::class, 'action']);
+    Route::post('/create', [KeranjangObat_Controller_U::class, 'add_keranjang']);
+    Route::put('/update/{id}', [KeranjangObat_Controller_U::class, 'update_keranjang']);
+    Route::delete('/delete/{id}', [KeranjangObat_Controller_U::class, 'delete_keranjang']);
 });
 
 // Transaksi Route User

@@ -5,7 +5,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-<section class="transaksi_detail" style="margin-top: 50px;">
+<section class="keranjang_detail" style="margin-top: 50px;">
     <div class="container">
         <div class="box-container">
             <div class="box" data-aos="fade-up">
@@ -44,7 +44,7 @@
                                       @endif
                                       {{-- End Of Session --}}
 
-                                      <form action="/keranjang-obat-user/payment/{{ $pembelian->id_pembelian }}" method="POST">
+                                      <form action="/keranjang-obat-user/create" method="POST">
                                         @csrf
                                         
                                         <div class="mt-3 mb-5 row">
@@ -77,7 +77,7 @@
                                           </div>
                                         </div>
 
-                                        <input name="id_pembelian" type="hidden" class="form-control" value="{{ $pembelian->id_pembelian }}">
+                                        <input name="pembelian_id" type="hidden" class="form-control" value="{{ $pembelian->id_pembelian }}">
 
                                         <div class="mt-3 mb-5 row">
                                             <label for="jml_beli_obat" class="col-sm-2 col-form-label">Jumlah Pembelian</label>
@@ -103,32 +103,51 @@
                                             </div>
                                         </div>
 
-                                      </form>
-                                      
-                                        <div class="d-flex justify-content-center">
-                                          <a href="/transaksi_user/{{ $pembelian->id_pembelian }}"><button class="tombol-beli button">Kembali</button></a>
+                                        <div class="d-flex justify-content-center mb-4">
+                                          <button type="submit" class="tombol-beli button">Tambah</button>
                                       </div>
 
+                                      </form>
+                                      
                                       {{-- Tabel Keranjang --}}
                                       <table class="table">
                                         <thead>
                                           <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th scope="col">Nama Obat</th>
+                                            <th scope="col">Jumlah Beli</th>
+                                            <th scope="col">Harga</th>
+                                            <th scope="col">Aksi</th>
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach ($carts as $cart)
                                           <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td>{{ $cart->obat_model->nama_obat }}</td>
+                                            <td>{{ $cart->jml_beli_obat }}</td>
+                                            <td>{{ $cart->harga_obat }}</td>
+                                            <td>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#ModalUpdate{{ $cart->id_keranjang }}">Edit</a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#ModalDelete{{ $cart->id_keranjang }}">Delete</a>
+                                            </td>
                                           </tr>
+                                        @endforeach
+                                           <tr>
+                                                <td colspan="2">Total Belanja</td>
+                                                <td colspan="2">{{ $total_beli->jml_bayar }}</td>
+                                           </tr>
                                         </tbody>
                                       </table>
                                       {{-- Akhir Tabel --}}
+
+                                      {{-- Menuju Checkout --}}
+                                      <form action="/pembelian_user/payment/{{ $pembelian->id_pembelian }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id_pembelian" id="id_pembelian" value="{{ $pembelian->id_pembelian }}">  
+                                        <input type="hidden" name="jml_bayaran" id="jml_bayaran" value="{{ $total_beli->jml_bayar }}">  
+                                        <div class="d-flex justify-content-center mt-3">
+                                            <button type="submit" class="tombol-beli button">Pembayaran</button>
+                                        </div>
+                                    </form>
 
                                   </div>
                                 </div>
@@ -140,6 +159,12 @@
         </div>
     </div>
 </section>
+
+    {{-- Memanggil Modal Update --}}
+    @include('User/Keranjang Obat/Modal.update_keranjang_user')
+
+    {{-- Memanggil Modal Delete --}}
+    @include('User/Keranjang Obat/Modal.delete_keranjang_user')
 
 @endsection
 

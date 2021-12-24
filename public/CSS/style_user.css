@@ -399,6 +399,15 @@ select {
     margin-left: 50px;
 }
 
+/* Keranjang */
+.keranjang_detail .container .box-container {
+    margin-top: 40px;
+    height: 780px;
+}
+.keranjang_detail .container .box-container .card {
+    margin-left: 50px;
+}
+
 /* Obat */
 .obat .container .box-container {
     margin-top: 40px;
@@ -1001,7 +1010,7 @@ header .fa-times {
 }
 
 .latar {
-    height: 520px;
+    /* height: 520px; */
     border: 4px solid #262626;
     border-image: linear-gradient(-45deg, #141e30, #243b55);
     border-image-slice: 1;

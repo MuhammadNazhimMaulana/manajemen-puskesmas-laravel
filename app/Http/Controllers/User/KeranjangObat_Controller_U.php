@@ -21,11 +21,26 @@ class KeranjangObat_Controller_U extends Controller
             "pembelian" => PembelianObat_Model::where('id_pembelian', $id_pembelian)->first(),
             "medicines" => Obat_Model::all(),
             "pasien" => Pasien_Model::all(),
-            "carts" => KeranjangObat_Model::all(),
+            "carts" => KeranjangObat_Model::where('pembelian_id', $id_pembelian)->get(),
             "total_beli" => $total_beli
         ];
 
         return view('User/Keranjang Obat/keranjang_obat_user', $data);
+    }
+
+    public function add_keranjang(Request $request)
+    {
+        $validateKeranjang = $request->validate([
+            'obat_id' => 'required',
+            'pembelian_id' => 'required',
+            'pasien_id' => 'required',
+            'jml_beli_obat' => 'required',
+            'harga_obat' => 'required',
+        ]);
+
+        KeranjangObat_Model::create($validateKeranjang);
+
+        return redirect('/keranjang-obat-user/' . $request->input('pembelian_id'))->with('success-tambah', 'Data Isi Keranjang Berhasil Ditambahkan');
     }
 
     // Getting the data of medicine
@@ -41,5 +56,37 @@ class KeranjangObat_Controller_U extends Controller
                 return response($data);
             }
         }
+    }
+
+    public function update_keranjang(Request $request, int $id)
+    {
+        $keranjang = KeranjangObat_Model::where('id_keranjang', $id)->first();
+
+        $validateKeranjang = $request->validate([
+            'obat_id' => 'required',
+            'pembelian_id' => 'required',
+            'pasien_id' => 'required',
+            'jml_beli_obat' => 'required',
+            'harga_obat' => 'required',
+        ]);
+
+        // Mendapatkan Harga
+        $validateKeranjang['harga_obat'] = $request->input('harga_obat') * $request->input('jml_beli_obat');
+
+        KeranjangObat_Model::where('id_keranjang', $keranjang->id_keranjang)
+            ->update($validateKeranjang);
+
+        return redirect('/keranjang-obat-user/' . $request->input('pembelian_id'))->with('success-update', 'Data Isi Keranjang Berhasil Diubah');
+    }
+
+    public function delete_keranjang(KeranjangObat_Model $keranjang, int $id, Request $request)
+    {
+        // Getting specific data
+        $keranjang = $keranjang->where('id_keranjang', $id)->first();
+
+        // Delete data from table
+        $keranjang->where('id_keranjang', $id)->delete();
+
+        return redirect('/keranjang-obat-user/' . $request->input('pembelian_id'))->with('danger', 'Data Keranjang Berhasil Dihapus');
     }
 }

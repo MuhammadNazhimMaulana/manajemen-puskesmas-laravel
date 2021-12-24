@@ -48,7 +48,10 @@
 
     <!-- AOS jdn link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous"></script>
-
+    
+    <!-- JS Bootstrap -->
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
     <!-- Custom JS -->
     <script src="{{ asset('JS/utama.js') }}"></script>
     
