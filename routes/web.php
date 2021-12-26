@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{LaporanPengunjung_Controller_A, KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\{Auth_Controller_U, Auth_Controller};
-use App\Http\Controllers\User\{KeranjangObat_Controller_U, PembelianObat_Controller_U, Transaksi_Controller_U, Dokter_Controller_U, User_Controller_U, Utama_Controller_U};
+use App\Http\Controllers\User\{KeranjangObat_Controller_U, PembelianObat_Controller_U, Transaksi_Controller_U, Dokter_Controller_U, User_Controller_U, Utama_Controller_U, Pendaftaran_Controller_U};
 
 
 /*
@@ -28,6 +28,13 @@ Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
 // Route personal user
 Route::get('/profile', [User_Controller_U::class, 'profile']);
 
+// Pendaftaran User Route
+Route::prefix('/pendaftaran_user')->group(function () {
+    Route::get('/', [Pendaftaran_Controller_U::class, 'get_all']);
+    Route::get('/create', [Pendaftaran_Controller_U::class, 'create_pendaftaran_user']);
+    Route::post('/create', [Pendaftaran_Controller_U::class, 'store_pendaftaran_user']);
+});
+
 // Route dokter user
 Route::prefix('/dokter_user')->group(function () {
     Route::get('/', [Dokter_Controller_U::class, 'get_all']);
@@ -36,9 +43,12 @@ Route::prefix('/dokter_user')->group(function () {
 // Transaksi Pemeblian Obat User Route
 Route::prefix('/pembelian_user')->group(function () {
     Route::get('/', [PembelianObat_Controller_U::class, 'get_all']);
+    Route::get('/{id}', [PembelianObat_Controller_U::class, 'view_pembelian']);
     Route::post('/create', [PembelianObat_Controller_U::class, 'store_pembelian_user']);
     Route::get('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_view']);
     Route::post('/payment/{id}', [PembelianObat_Controller_U::class, 'payment']);
+    Route::put('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_process']);
+    Route::get('/pembayaran_obat/{id}', [PembelianObat_Controller_U::class, 'pembayaran_obat']);
 });
 
 // Keranjang Pemeblian Obat User Route

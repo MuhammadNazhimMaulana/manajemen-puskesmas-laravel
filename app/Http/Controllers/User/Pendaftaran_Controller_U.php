@@ -10,25 +10,48 @@ use App\Models\{Pendaftaran_Model, Dokter_Model, User};
 
 class Pendaftaran_Controller_U extends Controller
 {
-    public function get_all()
+    public function get_all(Request $request)
     {
+        // Getting name of cashier kasir nanti bisa nullable
+        $pengguna = $request->session()->get('pengguna');
+
         $data = [
             "title" => "Pendaftaran",
-            "pendaftar" => Pendaftaran_Model::filterPendaftaran(request(['cari_pendaftar']))->paginate(5)
+            "pendaftar" => Pendaftaran_Model::filterPendaftaran(request(['cari_pendaftar']))->where('user_id', $pengguna[2])->paginate(5)
         ];
 
-        return view('Admin/Pendaftaran/view_pendaftaran', $data);
+        return view('User/Pendaftaran/view_pendaftaran_user', $data);
     }
 
-    public function mendaftar()
+    public function create_pendaftaran_user(Request $request)
     {
+        // Getting name of cashier kasir nanti bisa nullable
+        $pengguna = $request->session()->get('pengguna');
 
         $data = [
             "title" => "Pendaftaran",
-            "users" => User::all(),
+            "user" => User::where('id', $pengguna[2])->first(),
             "docters" => Dokter_Model::all()
         ];
 
-        return view('Admin/Pendaftaran/create_pendaftaran', $data);
+        return view('User/Pendaftaran/create_pendaftaran_user', $data);
+    }
+
+    public function store_pendaftaran_user(Request $request)
+    {
+
+        $validatePendaftaran = $request->validate([
+            'user_id' => 'required',
+            'dokter_id' => 'required',
+            'sakit' => 'required',
+            'kebutuhan' => 'required',
+        ]);
+
+        // Adding status
+        $validatePendaftaran['status_daftar'] = 'Sedang Proses';
+
+        Pendaftaran_Model::create($validatePendaftaran);
+
+        return redirect('/pendaftaran_user')->with('success', 'Pendaftar Baru Berhasil Ditambahkan');
     }
 }

@@ -12,7 +12,7 @@
             <div class="col-md-6 pl-md-5 content" data-aos="fade-left">
                 <h1><span>Selamat </span> Datang
                     <h3><a href="/profile"><span style="  color: var(--blue);">{{ $nama }}</span></a>, Silakan Mendaftar Untuk Melakukan Pemeriksaan</h3>
-                    <a href="#"><button class="button">Daftar</button></a>
+                    <a href="/pendaftaran_user"><button class="button">Daftar</button></a>
             </div>
         </div>
     </div>
