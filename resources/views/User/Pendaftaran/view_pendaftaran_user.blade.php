@@ -8,7 +8,7 @@
         <div class="box-container">
             <div class="box" data-aos="fade-up">
                 <div class="d-flex flex-column justify-content-center">
-                    <h1 class="text-center mb-5">Pembelian Obat</h1>
+                    <h1 class="text-center mb-5">Pendaftaran</h1>
                     <a href="/pendaftaran_user/create" class="btn btn-primary mb-4">Mendaftar</a>
                     <table class="table table-striped">
                         <thead>

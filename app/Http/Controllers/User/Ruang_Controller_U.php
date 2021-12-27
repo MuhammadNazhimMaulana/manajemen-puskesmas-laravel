@@ -19,6 +19,6 @@ class Ruang_Controller_U extends Controller
             "rooms" => Ruang_Model::filterRuang(request(['cari_ruang']))->paginate(5)
         ];
 
-        return view('Admin/Ruang/view_ruang', $data);
+        return view('User/Ruang/view_ruang_user', $data);
     }
 }

@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Transaksi_Model::class, 'user_id');
     }
+
+    public function penilaian_model()
+    {
+        return $this->hasOne(Penilaian_Model::class, 'user_id');
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{LaporanPengunjung_Controller_A, KeranjangObat_Controller_A, PembelianObat_Controller_A, Dokter_Controller_A, Ruang_Controller_A, User_Controller_A, Pendaftaran_Controller_A, Obat_Controller_A, Pasien_Controller_A, Transaksi_Controller_A};
 use App\Http\Controllers\Auth\{Auth_Controller_U, Auth_Controller};
-use App\Http\Controllers\User\{KeranjangObat_Controller_U, PembelianObat_Controller_U, Transaksi_Controller_U, Dokter_Controller_U, User_Controller_U, Utama_Controller_U, Pendaftaran_Controller_U};
+use App\Http\Controllers\User\{Penilaian_Controller_U, KeranjangObat_Controller_U, PembelianObat_Controller_U, Transaksi_Controller_U, Dokter_Controller_U, User_Controller_U, Utama_Controller_U, Pendaftaran_Controller_U, Obat_Controller_U, Ruang_Controller_U, Pasien_Controller_U};
 
 
 /*
@@ -66,6 +66,21 @@ Route::prefix('/transaksi_user')->group(function () {
     Route::get('/', [Transaksi_Controller_U::class, 'get_all']);
     Route::get('/{id}', [Transaksi_Controller_U::class, 'view_transaksi']);
     Route::get('/pembayaran/{id}', [Transaksi_Controller_U::class, 'pembayaran_transaksi']);
+});
+
+// Ruang Route
+Route::prefix('/ruang_user')->group(function () {
+    Route::get('/', [Ruang_Controller_U::class, 'get_all']);
+});
+
+// Pasien Route
+Route::prefix('/obat_user')->group(function () {
+    Route::get('/', [Obat_Controller_U::class, 'get_all']);
+});
+
+// Pasien Route
+Route::prefix('/pasien_user')->group(function () {
+    Route::get('/', [Pasien_Controller_U::class, 'get_all']);
 });
 
 // Main Route

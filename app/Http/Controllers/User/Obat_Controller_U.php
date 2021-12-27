@@ -18,6 +18,6 @@ class Obat_Controller_U extends Controller
             "obat" => Obat_Model::filterObat(request(['cari_obat']))->paginate(5)
         ];
 
-        return view('Admin/Obat/view_obat', $data);
+        return view('User/Obat/view_obat_user', $data);
     }
 }
