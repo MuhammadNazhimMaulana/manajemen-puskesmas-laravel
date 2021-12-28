@@ -8,6 +8,15 @@
         <div class="box-container">
             <div class="box" data-aos="fade-up">
                 <div class="d-flex flex-column justify-content-center">
+
+                    {{-- Start Session --}}
+                        @if(session()->has('success-menilai'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success-menilai') }}
+                            </div>
+                        @endif
+                    {{-- End of Session --}}
+
                     <h1 class="text-center mb-5">Pembelian Obat</h1>
                     <form action="/pembelian_user/create" method="POST" class="d-inline">
                         @csrf

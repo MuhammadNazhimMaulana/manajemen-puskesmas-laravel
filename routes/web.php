@@ -73,6 +73,11 @@ Route::prefix('/ruang_user')->group(function () {
     Route::get('/', [Ruang_Controller_U::class, 'get_all']);
 });
 
+// Penilaian Route
+Route::prefix('/penilaian')->group(function () {
+    Route::post('/', [Penilaian_Controller_U::class, 'add_penilaian']);
+});
+
 // Pasien Route
 Route::prefix('/obat_user')->group(function () {
     Route::get('/', [Obat_Controller_U::class, 'get_all']);
