@@ -14,7 +14,7 @@
     border: none !important;
     outline: none !important;
     text-decoration: none !important;
-    color: var(--black);
+    /* color: var(--black); */
     text-transform: capitalize;
     font-weight: 400;
     transition: all 0.2s linear;
@@ -1068,4 +1068,30 @@ header .fa-times {
 .table {
     border: 1px solid !important;
     border-color: black;
+}
+
+/* Penilaian */
+.nilai-css div {
+    color: #ffe400;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 0;
+}
+.nilai-css input {
+    display: none;
+}
+.nilai-css input + label {
+    font-size: 60px;
+    text-shadow: 1px 1px 0 #8f8420;
+    cursor: pointer;
+}
+.nilai-css input:checked + label ~ label {
+    color: #b4afaf;
+}
+.nilai-css label:active {
+    transform: scale(0.8);
+    transition: 0.3s ease;
 }

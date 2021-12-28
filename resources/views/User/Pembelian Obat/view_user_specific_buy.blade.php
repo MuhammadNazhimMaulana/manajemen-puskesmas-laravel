@@ -56,9 +56,10 @@
                                                 <input type="text" class="form-control" id="Editor" readonly value="{{ $pembelian->status_pembayaran }}">
                                             </div>
                                         </div>
-                                        <p class="description">
-                                            Jadi ini merupakan bagian deskripsi yang di rangkai nantinya dengan data-data buku yang masih tersisa apa saja dan ini masih bisa mengalami perubahan kok
-                                        </p>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNilai">
+                                            Penilaian
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -69,5 +70,8 @@
         </div>
     </div>
 </section>
+
+    {{-- Memanggil Modal Penilaian --}}
+    @include('User/Pembelian Obat/Modal Penilaian.penilaian_user')
 
 @endsection
