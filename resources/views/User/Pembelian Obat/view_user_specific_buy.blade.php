@@ -53,7 +53,7 @@
                                         <div class="mb-3 row">
                                             <label for="Editor" class="col-sm-2 col-form-label">Keterangan Pembayaran</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Editor" readonly value="{{ $pembelian->status_pembayaran }}">
+                                                <input type="text" class="form-control" id="status_pembayaran" readonly value="{{ $pembelian->status_pembayaran }}">
                                             </div>
                                         </div>
                                         <!-- Button trigger modal -->
@@ -74,4 +74,20 @@
     {{-- Memanggil Modal Penilaian --}}
     @include('User/Pembelian Obat/Modal Penilaian.penilaian_user')
 
+@endsection
+
+@section('script')
+
+<script type="text/javascript">
+    $(document).ready( function() {
+
+        var status_pembayaran = $('#status_pembayaran').val();
+
+        if(status_pembayaran == "Menunggu Pembayaran")
+        {
+            $('#ModalNilai').modal('show');
+        }
+    });
+</script>
+    
 @endsection
