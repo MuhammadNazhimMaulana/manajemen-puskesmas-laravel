@@ -66,8 +66,8 @@ data-client-key="SB-Mid-client-NgiArnTP4ZvhamTm"></script>
             alert("payment success!"); console.log(result);
           },
           onPending: function(result){
-            /* You may add your own implementation here */
-            alert("wating your payment!"); console.log(result);
+            /* Replace the link */
+            alert("wating your payment!"); console.log(result); window.location.href = "http://somewhereelse.com";
           },
           onError: function(result){
             /* You may add your own implementation here */

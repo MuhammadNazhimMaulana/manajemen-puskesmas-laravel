@@ -15,6 +15,8 @@ class Penilaian_Controller_U extends Controller
         $validatePenilaian = $request->validate([
             'nama_penilai' => 'required',
             'user_id' => 'required',
+            'transaksi_id' => 'required',
+            'pembelian_id' => 'required',
             'skor_pelayanan' => 'required',
         ]);
 

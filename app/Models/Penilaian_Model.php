@@ -14,12 +14,22 @@ class Penilaian_Model extends Model
     protected $primaryKey = 'id_penilaian';
 
     // Fillable
-    protected $fillable = ['nama_penilai', 'user_id', 'skor_pelayanan', 'created_at', 'updated_at'];
+    protected $fillable = ['nama_penilai', 'user_id', 'transaksi_id', 'pembelian_id', 'skor_pelayanan', 'created_at', 'updated_at'];
 
     // Relationships
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function transaksi_model()
+    {
+        return $this->belongsTo(Transaksi_Model::class, 'transaksi_id', 'id_transaksi');
+    }
+
+    public function pembelian_model()
+    {
+        return $this->belongsTo(PembelianObat_Model::class, 'pembelian_id', 'id_pembelian');
     }
 
     // Scope for searching

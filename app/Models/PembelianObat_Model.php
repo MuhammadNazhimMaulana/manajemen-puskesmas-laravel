@@ -33,6 +33,11 @@ class PembelianObat_Model extends Model
         return $this->hasOne(KeranjangObat_Model::class, 'pembelian_id', 'id_pembelian');
     }
 
+    public function penilaian_model()
+    {
+        return $this->hasOne(Penilaian_Model::class, 'pembelian_id', 'id_pembelian');
+    }
+
     // Scope for searching
     public function scopeFilterPembelianObat($query, array $fillters)
     {

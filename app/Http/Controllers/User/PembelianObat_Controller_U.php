@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 // Memanggil Model
-use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, User};
+use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, Penilaian_Model};
 
 class PembelianObat_Controller_U extends Controller
 {
@@ -28,9 +28,12 @@ class PembelianObat_Controller_U extends Controller
     {
         $pembelian = PembelianObat_Model::where('id_pembelian', $id)->first();
 
+        $penilaian = Penilaian_Model::where('pembelian_id', $id)->first();
+
         $data = [
             "title" => "Pembelian",
             "pembelian" => $pembelian,
+            "penilaian" => $penilaian
         ];
 
         return view('User/Pembelian Obat/view_user_specific_buy', $data);

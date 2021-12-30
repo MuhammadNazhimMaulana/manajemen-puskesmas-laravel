@@ -56,10 +56,10 @@
                                                 <input type="text" class="form-control" id="status_pembayaran" readonly value="{{ $pembelian->status_pembayaran }}">
                                             </div>
                                         </div>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNilai">
-                                            Penilaian
-                                        </button>
+
+                                        {{-- Cek Penilaian --}}
+                                        <input type="hidden" class="form-control" id="penilaian" readonly value="{{ empty($penilaian) }}">
+
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,9 @@
 
         var status_pembayaran = $('#status_pembayaran').val();
 
-        if(status_pembayaran == "Menunggu Pembayaran")
+        var penilaian = $('#penilaian').val();
+
+        if(status_pembayaran == "Lunas" && penilaian == 1)
         {
             $('#ModalNilai').modal('show');
         }
