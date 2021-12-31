@@ -42,13 +42,13 @@
                     <td>{{ $report->user->name }}</td>
                     <td>{{ $report->jumlah_pengunjung }}</td>
                     <td>{{ $report->jumlah_transaksi }}</td>
-                    <td class="aksi">
-                        <a href="/laporan/update/{{ $report->id_laporan }}">Edit</a>
-                        <a href="/laporan/pdf/{{ $report->id_laporan }}" target="_blank">PDF</a>
+                    <td>
+                        <a class="btn btn-info" href="/laporan/update/{{ $report->id_laporan }}">Edit</a>
+                        <a class="btn btn-warning" href="/laporan/pdf/{{ $report->id_laporan }}" target="_blank">PDF</a>
                         <form action="/laporan/delete/{{ $report->id_laporan }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+                            <button class="btn btn-danger border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                         </form>
                     </td>
                 </tr>

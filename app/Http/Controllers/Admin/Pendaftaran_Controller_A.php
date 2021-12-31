@@ -10,11 +10,12 @@ use App\Models\{Pendaftaran_Model, Dokter_Model, User};
 
 class Pendaftaran_Controller_A extends Controller
 {
+
     public function get_all()
     {
         $data = [
             "title" => "Pendaftaran",
-            "pendaftar" => Pendaftaran_Model::filterPendaftaran(request(['cari_pendaftar']))->paginate(5)
+            "pendaftar" => Pendaftaran_Model::filterPendaftaran(request(['cari_pendaftar']))->orderBy('kebutuhan', 'asc')->paginate(5)
         ];
 
         return view('Admin/Pendaftaran/view_pendaftaran', $data);

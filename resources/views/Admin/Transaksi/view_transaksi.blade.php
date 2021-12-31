@@ -42,12 +42,12 @@
                     <td>{{ $transactions->user->first_name }}</td>
                     <td>{{ $transactions->pasien_model->jadwal_periksa}}</td>
                     <td>{{ $transactions->ket_pembayaran }}</td>
-                    <td class="aksi">
-                        <a href="/transaksi/update/{{ $transactions->id_transaksi }}">Edit</a>
+                    <td>
+                        <a class="btn btn-info" href="/transaksi/update/{{ $transactions->id_transaksi }}">Edit</a>
                         <form action="/transaksi/delete/{{ $transactions->id_transaksi }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+                            <button class="btn btn-danger border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                         </form>
                     </td>
                 </tr>

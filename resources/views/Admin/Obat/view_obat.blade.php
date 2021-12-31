@@ -42,12 +42,12 @@
                     <td>{{ $medicine->nama_obat }}</td>
                     <td>{{ $medicine->stok}}</td>
                     <td>{{ $medicine->tanggal_kadaluarsa }}</td>
-                    <td class="aksi">
-                        <a href="/obat/update/{{ $medicine->id_obat }}">Edit</a>
+                    <td>
+                        <a class="btn btn-info" href="/obat/update/{{ $medicine->id_obat }}">Edit</a>
                         <form action="/obat/delete/{{ $medicine->id_obat }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+                            <button class="btn btn-danger border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                         </form>
                     </td>
                 </tr>

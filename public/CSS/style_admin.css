@@ -357,3 +357,9 @@ tbody tr td {
         margin: 30px 15px 30px 15px;
     }
 }
+
+/* Tulisan */
+.btn-info,
+.btn-warning {
+    color: white !important;
+}

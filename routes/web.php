@@ -189,6 +189,8 @@ Route::prefix('/laporan')->group(function () {
 // Auth
 Route::prefix('/admin')->group(function () {
     Route::get('/login', [Auth_Controller::class, 'login'])->name('login')->middleware('guest');
+    Route::get('/profile', [User_Controller_A::class, 'profile']);
+    Route::get('/ubah_profile', [User_Controller_A::class, 'ubah_profile']);
     Route::post('/login', [Auth_Controller::class, 'authLogin']);
     Route::post('/logout', [Auth_Controller::class, 'logout']);
     Route::get('/register', [Auth_Controller::class, 'register'])->middleware('guest');

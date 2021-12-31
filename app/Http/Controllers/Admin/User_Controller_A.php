@@ -15,4 +15,22 @@ class User_Controller_A extends Controller
 
         return view('Admin/Main/dashboard_admin', $data);
     }
+
+    public function profile()
+    {
+        $data = [
+            "title" => "Profile",
+        ];
+
+        return view('Admin/Personal/profile_admin', $data);
+    }
+
+    public function ubah_profile()
+    {
+        $data = [
+            "title" => "Profile",
+        ];
+
+        return view('Admin/Personal/ubah_profile_admin', $data);
+    }
 }

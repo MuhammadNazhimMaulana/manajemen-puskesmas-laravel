@@ -44,12 +44,12 @@
                     <td>{{ $docter->spesialis }}</td>
                     <td>{{ $docter->jadwal_hari }}</td>
                     <td>{{ $docter->jadwal_jam }}</td>
-                    <td class="aksi">
-                        <a href="/dokter/update/{{ $docter->id_dokter }}">Edit</a>
+                    <td>
+                        <a class="btn btn-info" href="/dokter/update/{{ $docter->id_dokter }}">Edit</a>
                         <form action="/dokter/delete/{{ $docter->id_dokter }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+                            <button class="btn btn-danger border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                         </form>
                     </td>
                 </tr>

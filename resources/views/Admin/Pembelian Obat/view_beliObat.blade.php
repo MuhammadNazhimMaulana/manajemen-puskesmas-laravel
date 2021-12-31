@@ -59,12 +59,12 @@
                     <td>{{ $buy_medicines->transaksi_model->tanggal_bayar}}</td>
                     <td>{{ $buy_medicines->ppn }}</td>
                     <td>{{ $buy_medicines->jumlah_bayar }}</td>
-                    <td class="aksi">
-                        <a href="/pembelian/update/{{ $buy_medicines->id_pembelian }}">Edit</a>
+                    <td>
+                        <a class="btn btn-info" href="/pembelian/update/{{ $buy_medicines->id_pembelian }}">Edit</a>
                         <form action="/pembelian/delete/{{ $buy_medicines->id_pembelian }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
-                            <button class="bg-white border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
+                            <button class="btn btn-danger border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                         </form>
                     </td>
                 </tr>
