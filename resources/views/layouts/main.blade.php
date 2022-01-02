@@ -37,7 +37,9 @@
 </section>
 
 
-
+    <!-- ChartJs -->
+    <script src="{{ asset('ChartJS/Chart.min.js') }}"></script>
+    
     <!-- JS Bootstrap -->
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     

@@ -34,14 +34,124 @@
         </div>
 
         <div class="row mt-3 ms-3">
-          <div class="col-md-6">
-            <h1>Pertama</h1>
+          <div class="col-md-4">
+            <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header text-center">Jumlah Transaksi</div>
+              <div class="card-body">
+                  <div class="container-white">
+                      <canvas id="transaksi" width="400" height="400"></canvas>
+                  </div>
+              </div>
+            </div>
           </div>
 
-          <div class="col-md-6">
-            <h1>Kedua</h1>
+          <div class="col-md-4">
+            <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header text-center">Jumlah Pasien</div>
+              <div class="card-body">
+                  <div class="container-white">
+                      <canvas id="pasien" width="400" height="400"></canvas>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header text-center">Penilaian</div>
+              <div class="card-body">
+                  <div class="container-white">
+                      <canvas id="penilaian" width="400" height="400"></canvas>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
 
+@endsection
 
+@section('script')
+
+<script>
+  // Chart Untuk transaksi
+  var kategori_transaksi = document.getElementById('transaksi');
+  var data_transaksi = [];
+  var label_transaksi = [];
+
+  @foreach($transaksi_per_kategori as $key => $value)
+    data_transaksi.push({{ $value->jumlah }});
+    label_transaksi.push('{{ $value->pengguna }}')
+  @endforeach
+
+  var data_transaksi_per_kategori = {
+      datasets: [{
+          data: data_transaksi,
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.8)',
+              'rgba(54, 162, 235, 0.8)',
+              'rgba(255, 206, 86, 0.8)',
+          ],
+      }],
+      labels: label_transaksi,
+  }
+
+  var chart_transaksi = new Chart(kategori_transaksi, {
+      type: 'doughnut',
+      data: data_transaksi_per_kategori
+  });
+
+    // Chart Untuk pasien
+    var kategori_pasien = document.getElementById('pasien');
+    var data_pasien = [];
+    var label_pasien = [];
+
+    @foreach($pasien_per_kategori as $key => $value)
+    data_pasien.push({{ $value->jumlah }});
+    label_pasien.push('{{ $value->pengguna }}')
+    @endforeach
+
+    var data_pasien_per_kategori = {
+        datasets: [{
+            data: data_pasien,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+            ],
+        }],
+        labels: label_pasien,
+    }
+
+    var chart_pasien = new Chart(kategori_pasien, {
+        type: 'doughnut',
+        data: data_pasien_per_kategori
+    });
+
+    // Chart Untuk penilaian
+    var kategori_penilaian = document.getElementById('penilaian');
+    var data_penilaian = [];
+    var label_penilaian = [];
+
+    @foreach($penilaian as $key => $value)
+    data_penilaian.push({{ $value->jumlah }});
+    @endforeach
+
+    var data_penilaian_per_kategori = {
+        datasets: [{
+            data: data_penilaian,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+            ],
+        }],
+        labels: label_penilaian,
+    }
+
+    var chart_pasien = new Chart(kategori_penilaian, {
+        type: 'doughnut',
+        data: data_penilaian_per_kategori
+    });
+
+</script>
 @endsection
