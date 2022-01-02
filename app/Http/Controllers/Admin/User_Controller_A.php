@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class User_Controller_A extends Controller
 {
@@ -16,21 +18,61 @@ class User_Controller_A extends Controller
         return view('Admin/Main/dashboard_admin', $data);
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
+        // Getting name of cashier
+        $nama = $request->session()->get('pengguna');
+
+        // Getting User Data
+        $data_user = User::where('id', $nama[2])->first();
+
         $data = [
             "title" => "Profile",
+            "pengguna" => $data_user
         ];
 
         return view('Admin/Personal/profile_admin', $data);
     }
 
-    public function ubah_profile()
+    public function ubah_profile(Request $request)
     {
+        // Getting name of User
+        $nama = $request->session()->get('pengguna');
+
+        // Getting User Data
+        $data_user = User::where('id', $nama[2])->first();
+
         $data = [
             "title" => "Profile",
+            "pengguna" => $data_user
         ];
 
         return view('Admin/Personal/ubah_profile_admin', $data);
+    }
+
+    public function proses_ubah(Request $request)
+    {
+        // Getting name of User
+        $nama = $request->session()->get('pengguna');
+
+        if ($request["password"] == null) {
+            // Password tidak diubah
+            $request["password"] = $request["old_password"];
+        } else {
+            // Password diubah
+            $request["password"] = Hash::make($request["passsword"]);
+        }
+
+        $updateProfile = $request->validate([
+            'username' => 'required|min:3|max:255',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'no_hp' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::where('id', $nama[2])->update($updateProfile);
+
+        return redirect('/admin/profile')->with('success', 'Profile Baru Berhasil Diupdate');
     }
 }

@@ -89,7 +89,7 @@ Route::prefix('/pasien_user')->group(function () {
 });
 
 // Main Route
-Route::get('/', [User_Controller_A::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard', [User_Controller_A::class, 'dashboard'])->middleware('auth');
 Route::get('/', [User_Controller_U::class, 'dashboard'])->middleware('auth');
 
 
@@ -191,6 +191,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/login', [Auth_Controller::class, 'login'])->name('login')->middleware('guest');
     Route::get('/profile', [User_Controller_A::class, 'profile']);
     Route::get('/ubah_profile', [User_Controller_A::class, 'ubah_profile']);
+    Route::put('/ubah_profil', [User_Controller_A::class, 'proses_ubah']);
     Route::post('/login', [Auth_Controller::class, 'authLogin']);
     Route::post('/logout', [Auth_Controller::class, 'logout']);
     Route::get('/register', [Auth_Controller::class, 'register'])->middleware('guest');

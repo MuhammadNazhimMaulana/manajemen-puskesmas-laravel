@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+
       <div class="values">
         <div class="val-box">
           <i class="fas fa-users"></i>
@@ -32,42 +33,15 @@
           </div>
         </div>
 
-        <div class="board">
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <td>Nama</td>
-                        <td>Title</td>
-                        <td>Status</td>
-                        <td>Role</td>
-                        <td>Aksi</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="people">
-                            <img class="gambar" src="Images/Bonevian.png">
-                            <div class="people-de">
-                                <h5>Nama</h5>
-                                <p>email</p>
-                            </div>
-                        </td>
+        <div class="row mt-3 ms-3">
+          <div class="col-md-6">
+            <h1>Pertama</h1>
+          </div>
 
-                        <td class="people-des">
-                            <h5>Pekerjaan</h5>
-                            <p>Web Dev</p>
-                        </td>
-
-                        <td class="aktif"><p>Active</p></td>
-
-                        <td class="role">
-                            <p>Pemilik</p>
-                        </td>
-
-                        <td class="aksi"><a href="#">Edit</a></td>
-
-                    </tr>
-                </tbody>
-            </table>
+          <div class="col-md-6">
+            <h1>Kedua</h1>
+          </div>
         </div>
+
+
 @endsection

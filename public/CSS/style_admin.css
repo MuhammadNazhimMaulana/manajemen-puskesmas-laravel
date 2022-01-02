@@ -99,6 +99,7 @@ body {
     border-bottom: 3px solid #594ef7;
     position: fixed;
     width: calc(100% - 300px);
+    z-index: 100;
 }
 
 #interface .navigation .search {

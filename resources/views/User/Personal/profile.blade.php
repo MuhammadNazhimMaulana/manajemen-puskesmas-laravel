@@ -19,6 +19,10 @@
                         <p><i class="fa fa-home informasi_lagi"></i>Tutorial Mudah</p>
                         <p><i class="fa fa-envelope informasi_lagi"></i>{{ $pengguna->email }}</p>
                         <p><i class="fa fa-phone informasi_lagi"></i>Tutorial Mudah</p>
+                        <form action="/logout_user" method="POST">
+                            @csrf
+                            <button class="ms-4 border-0" type="submit">Logout, {{ auth()->user()->name }}</button>
+                        </form>
                         <hr>
                     </div>
                     <div class="tombol_ubah">
