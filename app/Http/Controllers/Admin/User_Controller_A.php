@@ -30,7 +30,7 @@ class User_Controller_A extends Controller
             ->groupBy('first_name')
             ->get();
 
-        $penilaian = $mode_penilaian->select(DB::raw('COUNT(tbl_penilaian.id_penilaian) AS jumlah'))
+        $penilaian = $mode_penilaian->select(DB::raw('AVG(tbl_penilaian.skor_pelayanan) AS jumlah'))
             ->get();
 
         $data = [
