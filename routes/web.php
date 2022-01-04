@@ -27,6 +27,8 @@ Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
 
 // Route personal user
 Route::get('/profile', [User_Controller_U::class, 'profile']);
+Route::get('/profile_ubah', [User_Controller_U::class, 'ubah_profile']);
+Route::put('/profil_ubah', [User_Controller_U::class, 'proses_ubah']);
 
 // Pendaftaran User Route
 Route::prefix('/pendaftaran_user')->group(function () {

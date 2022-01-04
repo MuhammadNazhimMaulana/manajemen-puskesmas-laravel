@@ -1047,6 +1047,19 @@ header .fa-times {
     height: 70px;
 }
 
+.tombol_ubah button {
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    background: #0188df;
+    letter-spacing: 2px;
+    font-size: 16px;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
 .tombol_ubah a {
     display: inline-block;
     padding: 10px 30px;

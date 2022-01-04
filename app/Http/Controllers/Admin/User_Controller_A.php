@@ -18,7 +18,7 @@ class User_Controller_A extends Controller
     {
         $model_transaksi = new Transaksi_Model();
         $model_pasien = new Pasien_Model();
-        $mode_penilaian = new Penilaian_Model();
+        $model_penilaian = new Penilaian_Model();
 
         $transaksi_per_kategori = $model_transaksi->select(DB::raw('COUNT(tbl_transaksi.id_transaksi) AS jumlah'), DB::raw('users.first_name AS pengguna'))
             ->join('users', 'tbl_transaksi.user_id', '=', 'users.id')
@@ -30,7 +30,7 @@ class User_Controller_A extends Controller
             ->groupBy('first_name')
             ->get();
 
-        $penilaian = $mode_penilaian->select(DB::raw('AVG(tbl_penilaian.skor_pelayanan) AS jumlah'))
+        $penilaian = $model_penilaian->select(DB::raw('AVG(tbl_penilaian.skor_pelayanan) AS jumlah'))
             ->get();
 
         $data = [
