@@ -2,5 +2,5 @@
 
 Coming Soon
 
-More updates Will come
+More updates Will come soon
 
