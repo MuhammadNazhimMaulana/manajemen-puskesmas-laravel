@@ -16,10 +16,13 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || auth()->user()->role !== 'Admin' || auth()->user()->role !== 'Dokter' || auth()->user()->role !== 'Apoteker' || auth()->user()->role !== 'Kasir') {
+        if (!auth()->check()) {
             abort(403);
         }
 
-        return $next($request);
+        if (auth()->user()->role === 'Admin' || auth()->user()->role === 'Kasir' || auth()->user()->role === 'Apoteker' || auth()->user()->role === 'Dokter') {
+
+            return $next($request);
+        }
     }
 }

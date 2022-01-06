@@ -90,13 +90,15 @@ Route::prefix('/pasien_user')->group(function () {
     Route::get('/', [Pasien_Controller_U::class, 'get_all']);
 });
 
-// Main Route
-Route::get('/dashboard', [User_Controller_A::class, 'dashboard'])->middleware('admin');
+// Main Route User
 Route::get('/', [User_Controller_U::class, 'dashboard'])->middleware('auth');
 
 
 // Give middleware
 Route::middleware('admin')->group(function () {
+
+    // Main Route Admin
+    Route::get('/dashboard', [User_Controller_A::class, 'dashboard']);
 
     // Dokter Route
     Route::prefix('/dokter')->group(function () {

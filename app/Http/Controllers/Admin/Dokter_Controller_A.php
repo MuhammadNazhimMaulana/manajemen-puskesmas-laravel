@@ -13,6 +13,7 @@ class Dokter_Controller_A extends Controller
 {
     public function get_all()
     {
+
         $data = [
             "title" => "Dokter",
             "docters" => Dokter_Model::filterDokter(request(['cari_dokter']))->paginate(5)

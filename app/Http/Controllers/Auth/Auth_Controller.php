@@ -66,7 +66,7 @@ class Auth_Controller extends Controller
             // Store data in session
             $request->session()->put('pengguna', [$pengguna->first_name, $pengguna->username, $pengguna->id]);
 
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->with('loginError', 'Login Gagal');
