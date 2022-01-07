@@ -34,7 +34,7 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <div class="form-group mt-3 d-grid gap-2">
-                    <input type="submit" name="login" class="btn btn-primary" value="login">
+                    <input type="submit" name="login" class="btn btn-primary" value="Login">
                 </div>
             
                 <div class="daftar">

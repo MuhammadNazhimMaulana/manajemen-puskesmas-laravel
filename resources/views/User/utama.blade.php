@@ -15,7 +15,6 @@
                 <li><a href="#fasilitas">Fasilitas</a></li>
                 <li><a href="#review">Review</a></li>
                 <li><a href="#register">Register</a></li>
-                <li><a href="#penjualan">penjualan Obat</a></li>
             </ul>
         </nav>
 

@@ -33,7 +33,9 @@
                     <td>Nama Pasien</td>
                     <td>Kebutuhan Pasien</td>
                     <td>Keterangan</td>
-                    <td>Aksi</td>
+                    @can('admin')
+                        <td>Aksi</td>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +44,7 @@
                     <td>{{ $people->user->first_name }}</td>
                     <td>{{ $people->pendaftaran_model->kebutuhan}}</td>
                     <td>{{ $people->keterangan }}</td>
+                    @can('admin')
                     <td>
                         <a class="btn btn-info" href="/pasien/update/{{ $people->id_pasien }}">Edit</a>
                         <form action="/pasien/delete/{{ $people->id_pasien }}" method="POST" class="d-inline">
@@ -50,6 +53,7 @@
                             <button class="btn btn-danger border-0" onclick="return confirm('Apakah Anda yakin?')">Delete</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
                 @endforeach
             </tbody>

@@ -35,6 +35,7 @@ class Auth_Controller extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'no_hp' => 'required',
+            'email' => 'required',
             'password' => 'required|min:5|max:255',
         ]);
 

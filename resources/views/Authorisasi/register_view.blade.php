@@ -9,12 +9,20 @@
             <form action="/admin/register" method="POST">
                 @csrf
                 <div class="form-group mt-3">
-                    <label for="name">Nama</label>
-                    <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
+                    <label for="first_name">Nama Depan</label>
+                    <input type="text" name="first_name" class="form-control" required value="{{ old('first_name') }}">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="last_name">Nama Belakang</label>
+                    <input type="text" name="last_name" class="form-control" required value="{{ old('last_name') }}">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" class="form-control" required value="{{ old('username') }}">
+                </div>
+                <div class="form-group">
+                    <label for="no_hp">Nomor HP</label>
+                    <input type="text" name="no_hp" class="form-control" required value="{{ old('no_hp') }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>

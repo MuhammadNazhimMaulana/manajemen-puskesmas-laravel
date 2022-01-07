@@ -29,10 +29,11 @@ form {
 
 .register-form {
     width: 380px;
-    height: 590px;
+    height: 750px;
     margin: 20px;
     background: #1a2226 !important;
     border-radius: 10px !important;
+    margin-top: 200px;
 }
 
 input[type="text"],

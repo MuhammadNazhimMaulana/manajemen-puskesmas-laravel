@@ -23,6 +23,8 @@ class IsAdmin
         if (auth()->user()->role === 'Admin' || auth()->user()->role === 'Kasir' || auth()->user()->role === 'Apoteker' || auth()->user()->role === 'Dokter') {
 
             return $next($request);
+        } else {
+            abort(403);
         }
     }
 }

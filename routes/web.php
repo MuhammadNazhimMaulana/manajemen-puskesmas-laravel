@@ -18,83 +18,88 @@ use App\Http\Controllers\User\{Penilaian_Controller_U, KeranjangObat_Controller_
 */
 
 // Route User
-Route::get('/dashboard_user', [Utama_Controller_U::class, 'main']);
-Route::get('/login_user', [Auth_Controller_U::class, 'login']);
-Route::post('/login_user', [Auth_Controller_U::class, 'authLogin']);
-Route::post('/logout_user', [Auth_Controller_U::class, 'logout']);
-Route::get('/register_user', [Auth_Controller_U::class, 'register']);
-Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
-
-// Route personal user
-Route::get('/profile', [User_Controller_U::class, 'profile']);
-Route::get('/profile_ubah', [User_Controller_U::class, 'ubah_profile']);
-Route::put('/profil_ubah', [User_Controller_U::class, 'proses_ubah']);
-
-// Pendaftaran User Route
-Route::prefix('/pendaftaran_user')->group(function () {
-    Route::get('/', [Pendaftaran_Controller_U::class, 'get_all']);
-    Route::get('/create', [Pendaftaran_Controller_U::class, 'create_pendaftaran_user']);
-    Route::post('/create', [Pendaftaran_Controller_U::class, 'store_pendaftaran_user']);
+Route::middleware('guest')->group(function () {
+    Route::get('/login_user', [Auth_Controller_U::class, 'login']);
+    Route::post('/login_user', [Auth_Controller_U::class, 'authLogin']);
+    Route::get('/register_user', [Auth_Controller_U::class, 'register']);
+    Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
+    Route::get('/dashboard_user', [Utama_Controller_U::class, 'main']);
 });
 
-// Route dokter user
-Route::prefix('/dokter_user')->group(function () {
-    Route::get('/', [Dokter_Controller_U::class, 'get_all']);
+Route::middleware('user_ver')->group(function () {
+
+    // Route personal user
+    Route::get('/profile', [User_Controller_U::class, 'profile']);
+    Route::get('/profile_ubah', [User_Controller_U::class, 'ubah_profile']);
+    Route::put('/profil_ubah', [User_Controller_U::class, 'proses_ubah']);
+
+    // Pendaftaran User Route
+    Route::prefix('/pendaftaran_user')->group(function () {
+        Route::get('/', [Pendaftaran_Controller_U::class, 'get_all']);
+        Route::get('/create', [Pendaftaran_Controller_U::class, 'create_pendaftaran_user']);
+        Route::post('/create', [Pendaftaran_Controller_U::class, 'store_pendaftaran_user']);
+    });
+
+    // Route dokter user
+    Route::prefix('/dokter_user')->group(function () {
+        Route::get('/', [Dokter_Controller_U::class, 'get_all']);
+    });
+
+    // Transaksi Pemeblian Obat User Route
+    Route::prefix('/pembelian_user')->group(function () {
+        Route::get('/', [PembelianObat_Controller_U::class, 'get_all']);
+        Route::get('/{id}', [PembelianObat_Controller_U::class, 'view_pembelian']);
+        Route::post('/create', [PembelianObat_Controller_U::class, 'store_pembelian_user']);
+        Route::get('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_view']);
+        Route::post('/payment/{id}', [PembelianObat_Controller_U::class, 'payment']);
+        Route::put('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_process']);
+        Route::get('/pembayaran_obat/{id}', [PembelianObat_Controller_U::class, 'pembayaran_obat']);
+    });
+
+    // Keranjang Pemeblian Obat User Route
+    Route::prefix('/keranjang-obat-user')->group(function () {
+        Route::get('/', [KeranjangObat_Controller_U::class, 'keranjang_view']);
+        Route::get('/{id_pembelian}', [KeranjangObat_Controller_U::class, 'keranjang_pembelian']);
+        Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_U::class, 'action']);
+        Route::post('/create', [KeranjangObat_Controller_U::class, 'add_keranjang']);
+        Route::put('/update/{id}', [KeranjangObat_Controller_U::class, 'update_keranjang']);
+        Route::delete('/delete/{id}', [KeranjangObat_Controller_U::class, 'delete_keranjang']);
+    });
+
+    // Transaksi Route User
+    Route::prefix('/transaksi_user')->group(function () {
+        Route::get('/', [Transaksi_Controller_U::class, 'get_all']);
+        Route::get('/{id}', [Transaksi_Controller_U::class, 'view_transaksi']);
+        Route::get('/pembayaran/{id}', [Transaksi_Controller_U::class, 'pembayaran_transaksi']);
+    });
+
+    // Ruang Route
+    Route::prefix('/ruang_user')->group(function () {
+        Route::get('/', [Ruang_Controller_U::class, 'get_all']);
+    });
+
+    // Penilaian Route
+    Route::prefix('/penilaian')->group(function () {
+        Route::post('/', [Penilaian_Controller_U::class, 'add_penilaian']);
+    });
+
+    // Pasien Route
+    Route::prefix('/obat_user')->group(function () {
+        Route::get('/', [Obat_Controller_U::class, 'get_all']);
+    });
+
+    // Pasien Route
+    Route::prefix('/pasien_user')->group(function () {
+        Route::get('/', [Pasien_Controller_U::class, 'get_all']);
+    });
+
+    // Main Route User
+    Route::post('/logout_user', [Auth_Controller_U::class, 'logout']);
+    Route::get('/', [User_Controller_U::class, 'dashboard']);
 });
 
-// Transaksi Pemeblian Obat User Route
-Route::prefix('/pembelian_user')->group(function () {
-    Route::get('/', [PembelianObat_Controller_U::class, 'get_all']);
-    Route::get('/{id}', [PembelianObat_Controller_U::class, 'view_pembelian']);
-    Route::post('/create', [PembelianObat_Controller_U::class, 'store_pembelian_user']);
-    Route::get('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_view']);
-    Route::post('/payment/{id}', [PembelianObat_Controller_U::class, 'payment']);
-    Route::put('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_process']);
-    Route::get('/pembayaran_obat/{id}', [PembelianObat_Controller_U::class, 'pembayaran_obat']);
-});
 
-// Keranjang Pemeblian Obat User Route
-Route::prefix('/keranjang-obat-user')->group(function () {
-    Route::get('/', [KeranjangObat_Controller_U::class, 'keranjang_view']);
-    Route::get('/{id_pembelian}', [KeranjangObat_Controller_U::class, 'keranjang_pembelian']);
-    Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_U::class, 'action']);
-    Route::post('/create', [KeranjangObat_Controller_U::class, 'add_keranjang']);
-    Route::put('/update/{id}', [KeranjangObat_Controller_U::class, 'update_keranjang']);
-    Route::delete('/delete/{id}', [KeranjangObat_Controller_U::class, 'delete_keranjang']);
-});
-
-// Transaksi Route User
-Route::prefix('/transaksi_user')->group(function () {
-    Route::get('/', [Transaksi_Controller_U::class, 'get_all']);
-    Route::get('/{id}', [Transaksi_Controller_U::class, 'view_transaksi']);
-    Route::get('/pembayaran/{id}', [Transaksi_Controller_U::class, 'pembayaran_transaksi']);
-});
-
-// Ruang Route
-Route::prefix('/ruang_user')->group(function () {
-    Route::get('/', [Ruang_Controller_U::class, 'get_all']);
-});
-
-// Penilaian Route
-Route::prefix('/penilaian')->group(function () {
-    Route::post('/', [Penilaian_Controller_U::class, 'add_penilaian']);
-});
-
-// Pasien Route
-Route::prefix('/obat_user')->group(function () {
-    Route::get('/', [Obat_Controller_U::class, 'get_all']);
-});
-
-// Pasien Route
-Route::prefix('/pasien_user')->group(function () {
-    Route::get('/', [Pasien_Controller_U::class, 'get_all']);
-});
-
-// Main Route User
-Route::get('/', [User_Controller_U::class, 'dashboard'])->middleware('auth');
-
-
-// Give middleware
+// Give middleware Admin
 Route::middleware('admin')->group(function () {
 
     // Main Route Admin
@@ -191,17 +196,21 @@ Route::middleware('admin')->group(function () {
         Route::put('/update/{id}', [LaporanPengunjung_Controller_A::class, 'update_laporan_process']);
         Route::delete('/delete/{id}', [LaporanPengunjung_Controller_A::class, 'delete_laporan']);
     });
+
+    // Auth Admin
+    Route::prefix('/admin')->group(function () {
+        Route::get('/profile', [User_Controller_A::class, 'profile']);
+        Route::get('/ubah_profile', [User_Controller_A::class, 'ubah_profile']);
+        Route::put('/ubah_profil', [User_Controller_A::class, 'proses_ubah']);
+        Route::post('/logout', [Auth_Controller::class, 'logout']);
+    });
 });
 
 
-// Auth
-Route::prefix('/admin')->group(function () {
-    Route::get('/login', [Auth_Controller::class, 'login'])->name('login')->middleware('guest');
-    Route::get('/profile', [User_Controller_A::class, 'profile']);
-    Route::get('/ubah_profile', [User_Controller_A::class, 'ubah_profile']);
-    Route::put('/ubah_profil', [User_Controller_A::class, 'proses_ubah']);
+// Auth Admin
+Route::middleware('guest')->prefix('/admin')->group(function () {
+    Route::get('/login', [Auth_Controller::class, 'login'])->name('login');
     Route::post('/login', [Auth_Controller::class, 'authLogin']);
-    Route::post('/logout', [Auth_Controller::class, 'logout']);
-    Route::get('/register', [Auth_Controller::class, 'register'])->middleware('guest');
+    Route::get('/register', [Auth_Controller::class, 'register']);
     Route::post('/register', [Auth_Controller::class, 'storeRegister']);
 });
