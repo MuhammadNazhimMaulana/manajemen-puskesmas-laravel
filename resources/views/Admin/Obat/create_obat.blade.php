@@ -15,7 +15,7 @@
                     <label for="nama_obat" class="form-label">Nama Obat</label>
                     <select class="form-select" name="nama_obat" id="nama_obat">
                         @foreach ($medicines->Data_Seluruh_Obat as $obat)
-                            @if(old('nama_obat') == $obat->id_list_obat)
+                            @if(old('nama_obat') == $obat->nama_obat)
                                 <option value="{{ $obat->nama_obat }}" selected>{{ $obat->nama_obat }}</option>
                             @else
                                 <option value="{{ $obat->nama_obat }}">{{ $obat->nama_obat }}</option>

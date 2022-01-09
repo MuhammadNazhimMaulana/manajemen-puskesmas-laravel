@@ -59,7 +59,7 @@ class Obat_Controller_A extends Controller
     public function update_obat(int $id)
     {
         // Link dapatkan data
-        $nama_obat = Http::get("http://jsonplaceholder.typicode.com/posts");
+        $nama_obat = Http::withToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF9wZW5nZ3VuYV9hcGkiOiIxIiwidXNlcm5hbWUiOiJ3YW5kaSJ9.d5T0wkahqZaMtg_7qj4KVMblR2PBG9uw5SINxVlC1pU')->get("https://healthapi.bonevianweb.my.id/medicines/");
 
         $obat = Obat_Model::where('id_obat', $id)->first();
 
