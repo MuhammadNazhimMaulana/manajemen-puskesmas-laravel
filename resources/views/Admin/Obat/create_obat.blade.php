@@ -14,11 +14,11 @@
                 <div class="mb-3">
                     <label for="nama_obat" class="form-label">Nama Obat</label>
                     <select class="form-select" name="nama_obat" id="nama_obat">
-                        @foreach ($medicines as $obat)
-                            @if(old('nama_obat') == $obat->id)
-                                <option value="{{ $obat->title }}" selected>{{ $obat->title }}</option>
+                        @foreach ($medicines->Data_Seluruh_Obat as $obat)
+                            @if(old('nama_obat') == $obat->id_list_obat)
+                                <option value="{{ $obat->nama_obat }}" selected>{{ $obat->nama_obat }}</option>
                             @else
-                                <option value="{{ $obat->title }}">{{ $obat->title }}</option>
+                                <option value="{{ $obat->nama_obat }}">{{ $obat->nama_obat }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -109,7 +109,7 @@ $.ajaxSetup({
                 },
                 dataType: "JSON",
                 success: function(data) {
-                    $('#harga_satuan').val(data.data_obat[0].id * 10000);
+                    $('#harga_satuan').val(data.data_obat.Data_Obat[0].jumlah_stok * 10000);
                 }
             });
 

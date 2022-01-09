@@ -24,12 +24,13 @@ class Obat_Controller_A extends Controller
 
     public function create_obat()
     {
-        $nama_obat = Http::get("http://jsonplaceholder.typicode.com/posts");
-
+        $nama_obat = Http::withToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF9wZW5nZ3VuYV9hcGkiOiIxIiwidXNlcm5hbWUiOiJ3YW5kaSJ9.d5T0wkahqZaMtg_7qj4KVMblR2PBG9uw5SINxVlC1pU')->get("https://healthapi.bonevianweb.my.id/medicines/");
+     
         $data = [
             "title" => "Obat",
-            "medicines" => json_decode($nama_obat)
+            "medicines" => json_decode($nama_obat),
         ];
+        
 
         return view('Admin/Obat/create_obat', $data);
     }
@@ -122,11 +123,11 @@ class Obat_Controller_A extends Controller
             $action = $request->input('action');
 
             if ($action == 'get_harga_obat') {
-
-                $data = Http::get("http://jsonplaceholder.typicode.com/posts?title=" . $request->input('nama_obat'));
+                
+                $data_obat = Http::withToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF9wZW5nZ3VuYV9hcGkiOiIxIiwidXNlcm5hbWUiOiJ3YW5kaSJ9.d5T0wkahqZaMtg_7qj4KVMblR2PBG9uw5SINxVlC1pU')->get("https://healthapi.bonevianweb.my.id/medicines/search/?keyword=" . $request->input('nama_obat'));
 
                 return response()->json([
-                    'data_obat' => json_decode($data)
+                    'data_obat' => json_decode($data_obat)
                 ]);
             }
         }
