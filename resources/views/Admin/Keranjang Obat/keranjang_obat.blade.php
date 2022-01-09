@@ -12,6 +12,12 @@
         </div>
         @endif
 
+        @if(session()->has('tambah-double'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('tambah-double') }}
+        </div>
+        @endif
+
         @if(session()->has('success-tambah'))
         <div class="alert alert-success" role="alert">
             {{ session('success-tambah') }}

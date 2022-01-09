@@ -19,7 +19,7 @@ class CreateTblDokter extends Migration
             $table->string('spesialis', 150);
             $table->string('jadwal_hari', 150);
             $table->string('jadwal_waktu', 45);
-            $table->string('foto_dokter', 170);
+            $table->string('foto_dokter', 170)->nullable();
             $table->timestamps();
         });
     }

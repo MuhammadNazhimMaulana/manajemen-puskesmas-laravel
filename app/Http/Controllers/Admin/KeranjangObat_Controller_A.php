@@ -30,6 +30,8 @@ class KeranjangObat_Controller_A extends Controller
 
     public function add_keranjang(Request $request)
     {
+        $models = KeranjangObat_Model::where('pembelian_id', $request->input('pembelian_id'))->get();
+
         $validateKeranjang = $request->validate([
             'obat_id' => 'required',
             'pembelian_id' => 'required',
@@ -38,6 +40,17 @@ class KeranjangObat_Controller_A extends Controller
             'harga_obat' => 'required',
         ]);
 
+        // Cek jikalau ada nama obat yang double di keranjang
+        foreach($models as $model){
+
+            if($model->obat_id == $request->input('obat_id'))
+            {
+                return redirect('/keranjang-obat/' . $request->input('pembelian_id'))->with('tambah-double', 'Obat ini sudah ada di keranjang');
+            }
+            
+        }
+
+        // Kalau tidak double akan di masukkan ke keranjang
         KeranjangObat_Model::create($validateKeranjang);
 
         return redirect('/keranjang-obat/' . $request->input('pembelian_id'))->with('success-tambah', 'Data Isi Keranjang Berhasil Ditambahkan');

@@ -23,7 +23,6 @@ class Pasien_Controller_A extends Controller
 
     public function create_pasien()
     {
-
         $data = [
             "title" => "Pasien",
             "users" => User::all(),

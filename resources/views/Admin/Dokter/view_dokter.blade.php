@@ -43,7 +43,7 @@
                     <td>{{ $docter->nama_dokter }}</td>
                     <td>{{ $docter->spesialis }}</td>
                     <td>{{ $docter->jadwal_hari }}</td>
-                    <td>{{ $docter->jadwal_jam }}</td>
+                    <td>{{ $docter->jadwal_waktu }}</td>
                     <td>
                         <a class="btn btn-info" href="/dokter/update/{{ $docter->id_dokter }}">Edit</a>
                         <form action="/dokter/delete/{{ $docter->id_dokter }}" method="POST" class="d-inline">
