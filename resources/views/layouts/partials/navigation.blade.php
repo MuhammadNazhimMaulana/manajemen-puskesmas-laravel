@@ -14,7 +14,7 @@
       @auth
         <form action="/admin/logout" method="POST">
           @csrf
-          <button class="ms-4 border-0" type="submit">Logout, {{ auth()->user()->name }}</button>
+          <button class="ms-4 border-0 btn btn-dark" type="submit">Logout {{ auth()->user()->name }}</button>
         </form>
       @else
       {{-- Jika Belum Login --}}
