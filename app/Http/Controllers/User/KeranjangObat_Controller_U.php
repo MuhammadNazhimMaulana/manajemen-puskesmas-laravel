@@ -30,6 +30,10 @@ class KeranjangObat_Controller_U extends Controller
 
     public function add_keranjang(Request $request)
     {
+        $models = KeranjangObat_Model::where('pembelian_id', $request->input('pembelian_id'))->get();
+
+        $cek_stok = Obat_Model::where('id_obat', $request->input('obat_id'))->first();
+
         $validateKeranjang = $request->validate([
             'obat_id' => 'required',
             'pembelian_id' => 'required',
@@ -37,6 +41,22 @@ class KeranjangObat_Controller_U extends Controller
             'jml_beli_obat' => 'required',
             'harga_obat' => 'required',
         ]);
+
+        // Cek jumlah pesanan dengan stok yang ada
+         if($cek_stok->stok < $request->input('jml_beli_obat'))
+         {
+             return redirect('/keranjang-obat-user/' . $request->input('pembelian_id'))->with('kebanyakan', 'Pesanan Melebihi Stok');
+        }
+
+        // Cek jikalau ada nama obat yang double di keranjang
+        foreach($models as $model){
+
+            if($model->obat_id == $request->input('obat_id'))
+            {
+                return redirect('/keranjang-obat-user/' . $request->input('pembelian_id'))->with('tambah-double', 'Obat ini sudah ada di keranjang');
+            }
+
+        }
 
         KeranjangObat_Model::create($validateKeranjang);
 
