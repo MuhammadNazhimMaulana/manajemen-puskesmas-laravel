@@ -17,7 +17,7 @@ class CreateTblRuang extends Migration
             $table->id('id_ruang');
             $table->string('nama_ruang', 60);
             $table->integer('kapasitas');
-            $table->string('foto_ruang', 125);
+            $table->string('foto_ruang', 125)->nullable();
             $table->timestamps();
         });
     }

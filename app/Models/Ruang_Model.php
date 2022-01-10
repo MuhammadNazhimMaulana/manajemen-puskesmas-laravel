@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ruang_Model extends Model
 {
+    // Untuk Factory
+    use HasFactory;
+
     // Nama Tabel
     protected $table = 'tbl_ruang';
 
