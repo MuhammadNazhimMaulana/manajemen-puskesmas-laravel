@@ -30,7 +30,9 @@
                                     <div class="book-information">
                                         <div class="d-flex justify-content-between">
                                             <a href="/pembelian_user" class="back">Kembali ke Daftar</a>
+                                            @if($pembelian->status_pembayaran != 'Lunas')
                                             <a href="/pembelian_user/pembayaran_obat/{{ $pembelian->id_pembelian }}" class="back">Menuju Pembayaran</a>
+                                            @endif
                                         </div>
                                         <div class="mt-3 mb-3 row">
                                             <label for="Editor" class="col-sm-2 col-form-label">Biaya Pembayaran</label>
