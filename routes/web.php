@@ -24,6 +24,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/register_user', [Auth_Controller_U::class, 'register']);
     Route::post('/register_user', [Auth_Controller_U::class, 'storeRegister']);
     Route::get('/dashboard_user', [Utama_Controller_U::class, 'main']);
+
+    // Lupa password User
+    Route::get('/forgetPass_user', [Auth_Controller_U::class, 'forget_view']);
+    Route::post('/forgetPass_user', [Auth_Controller_U::class, 'forget_pass']);
 });
 
 Route::middleware('user_ver')->group(function () {
@@ -213,4 +217,8 @@ Route::middleware('guest')->prefix('/admin')->group(function () {
     Route::post('/login', [Auth_Controller::class, 'authLogin']);
     Route::get('/register', [Auth_Controller::class, 'register']);
     Route::post('/register', [Auth_Controller::class, 'storeRegister']);
+
+    // Lupa password Admin
+    Route::get('/forgetPass_admin', [Auth_Controller::class, 'forget_view']);
+    Route::post('/forgetPass_admin', [Auth_Controller::class, 'forget_pass']);
 });

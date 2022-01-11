@@ -15,6 +15,14 @@
         @endif
 
         {{-- Tampilan Gagal Login --}}
+        @if(session()->has('reset'))
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+            {{ session('reset') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        
+        {{-- Tampilan Gagal Login --}}
         @if(session()->has('loginError'))
         <div class="alert alert-danger alert-dismissable fade show" role="alert">
             {{ session('loginError') }}
@@ -39,6 +47,9 @@
             
                 <div class="daftar">
                     Tidak Punya Akun? <a href="/admin/register">Ayo Daftar</a>
+                </div>
+                <div class="daftar">
+                    <a href="/admin/forgetPass_admin">Lupa Password?</a>
                 </div>
             </form>
         </div>

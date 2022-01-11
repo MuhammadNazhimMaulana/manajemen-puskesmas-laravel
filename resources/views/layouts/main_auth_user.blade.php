@@ -23,6 +23,7 @@
         @yield('container_auth_user')
 
     </div>
+
 </body>
 
 </html>

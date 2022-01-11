@@ -18,6 +18,15 @@ class Auth_Controller extends Controller
         return view('Authorisasi/login_view', $data);
     }
 
+    public function forget_view()
+    {
+        $data = [
+            "title" => "Lupa Password",
+        ];
+
+        return view('Authorisasi/lupa_admin', $data);        
+    }
+
     public function register()
     {
         $data = [
@@ -25,6 +34,30 @@ class Auth_Controller extends Controller
         ];
 
         return view('Authorisasi/register_view', $data);
+    }
+
+    // Cek email yang dimasukkan apakah ada atau tidak
+    public function forget_pass(Request $request, User $user)
+    {
+        $checkemail = $request->input('email');
+
+        // Cek email
+        if($user->where('email', $checkemail)->first())
+        {
+            $pengguna = $user->where('email', $checkemail)->first();
+
+            $new_pass = [
+                'password' => Hash::make($request->input('password'))
+            ];
+
+             // Ubah Password
+            $user->where('id', $pengguna->id)->update($new_pass);
+
+            return redirect('/admin/login')->with('reset', 'Berhasil Ubah Password');
+        }else{
+
+            return back()->with('emailnotFound', 'Email yang dimasukkan tidak terdaftar');
+        }
     }
 
     // Post Registrasi

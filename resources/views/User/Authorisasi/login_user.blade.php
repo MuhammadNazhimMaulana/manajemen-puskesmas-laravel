@@ -6,17 +6,21 @@
 
             {{-- Tampilan Berhasil Register --}}
             @if(session()->has('success'))
-            <div class="alert alert-success alert-dismissable fade show" role="alert">
+            <div class="alert alert-success" role="alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+            @if(session()->has('reset'))
+            <div class="alert alert-success" role="alert">
+                {{ session('reset') }}
             </div>
             @endif
 
             {{-- Tampilan Gagal Login --}}
             @if(session()->has('loginError'))
-            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            <div class="alert alert-danger" role="alert">
                 {{ session('loginError') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
         </div>
@@ -44,10 +48,11 @@
                     </div>
                 </div>
 
-                <input type="submit" name="login" class="btn btn-primary" value="login">
+                <input type="submit" name="login" class="btn btn-primary" value="Login">
             </form>
             <div class="register">
                 <a href="/register_user">Silakan Daftar Disini</a>
+                <a href="/forgetPass_user">Lupa Password?</a>
             </div>
         </div>
 
