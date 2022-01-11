@@ -41,7 +41,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="Editor" class="col-sm-2 col-form-label">Jadwal Periksa</label>
+                                            <label for="Editor" class="col-sm-2 col-form-label">Keterangan Periksa</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="Editor" readonly value="{{ $pembelian->transaksi_model->ket_pembayaran }}">
                                             </div>

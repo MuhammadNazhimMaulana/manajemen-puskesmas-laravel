@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 // Memanggil Model
-use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, User};
+use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, User, Obat_Model};
 
 class PembelianObat_Controller_A extends Controller
 {
@@ -50,12 +50,27 @@ class PembelianObat_Controller_A extends Controller
     {
         $pembelian = PembelianObat_Model::where('id_pembelian', $id)->first();
 
+        $carts = KeranjangObat_Model::where('pembelian_id', $id)->get();
+
         $data_pembelian = [
             'user_id' => $pembelian->user_id,
             'transaksi_id' => $pembelian->transaksi_id,
             'jumlah_bayar' => $request->input('jml_bayaran'),
         ];
 
+        // Mengurangi Jumlah Stok
+        foreach($carts as $cart)
+        {
+            $stok = Obat_Model::where('id_obat', $cart->obat_id)->first();
+
+            $data_obat = [
+                'stok' => $stok->stok - $cart->jml_beli_obat
+            ];
+
+            Obat_Model::where('id_obat', $cart->obat_id)->update($data_obat);
+        }
+
+        // Mengupdate Tabel Pembelian Obat
         PembelianObat_Model::where('id_pembelian', $pembelian->id_pembelian)
             ->update($data_pembelian);
 
@@ -114,5 +129,21 @@ class PembelianObat_Controller_A extends Controller
             ->update($data_pembelian);
 
         return redirect('/pembelian')->with($pesan);
+    }
+
+    public function delete_pembelian(PembelianObat_Model $pembelian, int $id)
+    {
+        // Getting specific data
+        $pembelian = $pembelian->where('id_pembelian', $id)->first();
+
+        // Delete picture
+        if ($pembelian->foto_bukti_bayar_obat) {
+            Storage::delete($pembelian->foto_bukti_bayar_obat);
+        }
+
+        // Delete data from table
+        PembelianObat_Model::where('id_pembelian', $id)->delete();
+
+        return redirect('/pembelian')->with('danger', 'Transaksi Pembelian Obat Berhasil Dihapus');
     }
 }

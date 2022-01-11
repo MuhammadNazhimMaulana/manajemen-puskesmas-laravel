@@ -60,7 +60,7 @@
                     <td>{{ $buy_medicines->ppn }}</td>
                     <td>{{ $buy_medicines->jumlah_bayar }}</td>
                     <td>
-                        <a class="btn btn-info" href="/pembelian/update/{{ $buy_medicines->id_pembelian }}">Edit</a>
+                        <a class="btn btn-info" href="/pembelian/payment/{{ $buy_medicines->id_pembelian }}">Edit</a>
                         <form action="/pembelian/delete/{{ $buy_medicines->id_pembelian }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf

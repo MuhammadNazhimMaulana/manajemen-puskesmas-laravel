@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 // Memanggil Model
-use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, Penilaian_Model};
+use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, Penilaian_Model, Obat_Model};
 
 class PembelianObat_Controller_U extends Controller
 {
@@ -70,12 +70,27 @@ class PembelianObat_Controller_U extends Controller
     {
         $pembelian = PembelianObat_Model::where('id_pembelian', $id)->first();
 
+        $carts = KeranjangObat_Model::where('pembelian_id', $id)->get();
+
         $data_pembelian = [
             'user_id' => $pembelian->user_id,
             'transaksi_id' => $pembelian->transaksi_id,
             'jumlah_bayar' => $request->input('jml_bayaran'),
         ];
 
+        // Mengurangi Jumlah Stok
+        foreach($carts as $cart)
+        {
+            $stok = Obat_Model::where('id_obat', $cart->obat_id)->first();
+
+            $data_obat = [
+                'stok' => $stok->stok - $cart->jml_beli_obat
+            ];
+
+            Obat_Model::where('id_obat', $cart->obat_id)->update($data_obat);
+        }
+
+        // Mengupdate Tabel Pembelian Obat
         PembelianObat_Model::where('id_pembelian', $pembelian->id_pembelian)
             ->update($data_pembelian);
 
