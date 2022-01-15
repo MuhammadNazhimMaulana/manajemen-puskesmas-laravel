@@ -6,7 +6,7 @@ services:
         ports:
             - 8000:8000
         volumes:
-            - ./aplikasi:/app
+            - app-laravel:/app
         environment:
           - DB_HOST=db-mysql
           - REDIS_HOST=db-redis
@@ -21,11 +21,13 @@ services:
         ports:
             - 3306:3306
         volumes:
-            - ./database:/var/lib/mysql
+            - database:/var/lib/mysql
         container_name: mysql-web
         environment:
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=manajemen_puskesmas
+            - MYSQL_ROOT_PASSWORD=admin
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=admin
 
     db-redis:
         image: redis:alpine
@@ -33,10 +35,24 @@ services:
         ports:
             - 6379:6379
         volumes:
-            - ./redis:/data
+            - data-redis:/data
         container_name: redis-web
 
+    pma:
+        container_name: pma
+        image: phpmyadmin
+        hostname: pma
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            - PMA_HOST=db-mysql
+            - PMA_USER=admin
+            - PMA_PASSWORD=admin
+        depends_on:
+            - db-mysql
+
 volumes:
-    aplikasi: {}
+    app-laravel: {}
     database: {}
-    redis: {}
+    data-redis: {}
