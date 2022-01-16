@@ -1,58 +1,50 @@
-version: '3.3'
-
+# For more information: https://laravel.com/docs/sail
+version: '3'
 services:
-    web:
-        image: image-laravel
+    laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.1
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: sail-8.1/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
         ports:
-            - 8000:8000
-        volumes:
-            - app-laravel:/app
+            - '${APP_PORT:-80}:80'
         environment:
-          - DB_HOST=db-mysql
-          - REDIS_HOST=db-redis
-        container_name: web-laravel
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
         depends_on:
-            - db-mysql
-            - db-redis
-
-    db-mysql:
-        image: mysql
-        restart: always
+            - mysql
+    mysql:
+        image: 'mysql/mysql-server:8.0'
         ports:
-            - 3306:3306
-        volumes:
-            - database:/var/lib/mysql
-        container_name: mysql-web
+            - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            - MYSQL_DATABASE=manajemen_puskesmas
-            - MYSQL_ROOT_PASSWORD=admin
-            - MYSQL_USER=admin
-            - MYSQL_PASSWORD=admin
-
-    db-redis:
-        image: redis:alpine
-        restart: always
-        ports:
-            - 6379:6379
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
-            - data-redis:/data
-        container_name: redis-web
-
-    pma:
-        container_name: pma
-        image: phpmyadmin
-        hostname: pma
-        restart: always
-        ports:
-            - 8080:80
-        environment:
-            - PMA_HOST=db-mysql
-            - PMA_USER=admin
-            - PMA_PASSWORD=admin
-        depends_on:
-            - db-mysql
-
+            - 'sailmysql:/var/lib/mysql'
+        networks:
+            - sail
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            retries: 3
+            timeout: 5s
+networks:
+    sail:
+        driver: bridge
 volumes:
-    app-laravel: {}
-    database: {}
-    data-redis: {}
+    sailmysql:
+        driver: local
