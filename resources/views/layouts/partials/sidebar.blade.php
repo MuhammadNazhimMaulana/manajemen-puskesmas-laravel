@@ -24,6 +24,7 @@
         @endcanany
         @can('admin')
             <li class="{{ ($title == "Ruang") ? 'active' : '' }}"><i class="fas fa-hospital"></i><a href="/ruang">Ruang</a></li>
+            <li class="{{ ($title == "List Penilaian") ? 'active' : '' }}"><i class="fas fa-hospital"></i><a href="/penilaian">Penilaian</a></li>
         @endcan
         @canany(['kasir', 'admin'])
             <li class="{{ ($title == "Transaksi") ? 'active' : '' }}"><i class="fas fa-store"></i><a href="/transaksi">Transaksi</a></li>
