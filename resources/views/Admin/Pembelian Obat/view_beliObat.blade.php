@@ -42,6 +42,7 @@
             @csrf
             <button class="btn btn-primary">Beli Obat</button>
         </form>
+        
         <table class="mt-3" width="100%">
             <thead>
                 <tr>
