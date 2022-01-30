@@ -3,8 +3,6 @@
 
 @section('utama')
 
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-
 <section class="keranjang_detail" style="margin-top: 50px;">
     <div class="container">
         <div class="box-container">
@@ -65,9 +63,9 @@
                                             <select class="form-select" name="obat_id" id="obat_id">
                                                 @foreach ($medicines as $medicine)
                                                     @if(old('obat_id') == $medicine->id_obat)
-                                                        <option value="{{ $medicine->id_obat }}" selected>{{ $medicine->nama_obat }}</option>
+                                                        <option data-harga="{{ $medicine->harga_satuan }}" value="{{ $medicine->id_obat }}" selected>{{ $medicine->nama_obat }}</option>
                                                     @else
-                                                        <option value="{{ $medicine->id_obat }}">{{ $medicine->nama_obat }}</option>
+                                                        <option data-harga="{{ $medicine->harga_satuan }}" value="{{ $medicine->id_obat }}">{{ $medicine->nama_obat }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -182,46 +180,12 @@
 
 @section('script')
 <script type="text/javascript">
-
-$.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
-    $(document).ready(function() {
-    
-    // Getting prize of medicine and times it with how many that person buy
-    $('#obat_id').change(function() {
-
-        var obat_id = $('#obat_id').val();
-
-        var action = 'get_cost';
-
-        var id_pembelian = $('#pembelian_id').val();
-
-        var jml_beli_obat = $('#jml_beli_obat').val();
-
-        if (obat_id != '') {
-            $.ajax({
-                url: id_pembelian + "/harga_obat",
-                method: "GET",
-                data: {
-                    obat_id: obat_id,
-                    action: action
-                },
-                dataType: "JSON",
-                success: function(data) {
-                    $('#harga_obat').val(data.harga_satuan * jml_beli_obat);
-                }
-            });
-
-        } else {
-            $('#harga_obat').val('');
-        }
-    });
-
-    });
+$("[name='jml_beli_obat']").on('input', function(e) {
+    e.preventDefault()
+    harga = $("[name='obat_id'] option:selected").data('harga')
+    qty = $(this).val()
+    $("[name='harga_obat']").val(harga * qty)
+})
 </script>
 
 @endsection
