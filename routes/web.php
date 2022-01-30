@@ -63,7 +63,6 @@ Route::middleware('user_ver')->group(function () {
     Route::prefix('/keranjang-obat-user')->group(function () {
         Route::get('/', [KeranjangObat_Controller_U::class, 'keranjang_view']);
         Route::get('/{id_pembelian}', [KeranjangObat_Controller_U::class, 'keranjang_pembelian']);
-        Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_U::class, 'action']);
         Route::post('/create', [KeranjangObat_Controller_U::class, 'add_keranjang']);
         Route::put('/update/{id}', [KeranjangObat_Controller_U::class, 'update_keranjang']);
         Route::delete('/delete/{id}', [KeranjangObat_Controller_U::class, 'delete_keranjang']);
@@ -188,7 +187,6 @@ Route::middleware('admin')->group(function () {
     Route::prefix('/keranjang-obat')->group(function () {
         Route::get('/', [KeranjangObat_Controller_A::class, 'keranjang_view']);
         Route::get('/{id_pembelian}', [KeranjangObat_Controller_A::class, 'keranjang_pembelian']);
-        Route::get('{id_pembelian}/harga_obat', [KeranjangObat_Controller_A::class, 'action']);
         Route::post('/create', [KeranjangObat_Controller_A::class, 'add_keranjang']);
         Route::put('/update/{id}', [KeranjangObat_Controller_A::class, 'update_keranjang']);
         Route::delete('/delete/{id}', [KeranjangObat_Controller_A::class, 'delete_keranjang']);

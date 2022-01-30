@@ -64,21 +64,6 @@ class KeranjangObat_Controller_A extends Controller
         return redirect('/keranjang-obat/' . $request->input('pembelian_id'))->with('success-tambah', 'Data Isi Keranjang Berhasil Ditambahkan');
     }
 
-    // Getting the data of medicine
-    public function action(Request $request)
-    {
-        if ($request->input('action')) {
-            $action = $request->input('action');
-
-            if ($action == 'get_cost') {
-
-                $data = Obat_Model::where('id_obat', $request->input('obat_id'))->first();
-
-                return response($data);
-            }
-        }
-    }
-
     public function update_keranjang(Request $request, int $id)
     {
         $keranjang = KeranjangObat_Model::where('id_keranjang', $id)->first();
