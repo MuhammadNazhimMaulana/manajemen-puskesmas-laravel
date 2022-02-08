@@ -33,6 +33,11 @@ class Transaksi_Model extends Model
         return $this->hasOne(Penilaian_Model::class, 'transaksi_id', 'id_transaksi');
     }
 
+    public function pembelian()
+    {
+        return $this->hasOne(Transaksi_Model::class, 'transaksi_id', 'id_transaksi');
+    }
+
     // Scope for searching
     public function scopeFilterTransaksi($query, array $fillters)
     {
