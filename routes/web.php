@@ -73,6 +73,7 @@ Route::middleware('user_ver')->group(function () {
         Route::get('/', [Transaksi_Controller_U::class, 'get_all']);
         Route::get('/{id}', [Transaksi_Controller_U::class, 'view_transaksi']);
         Route::get('/pembayaran/{id}', [Transaksi_Controller_U::class, 'pembayaran_transaksi']);
+        Route::get('/pdf/{id}', [Transaksi_Controller_U::class, 'pdf_transaksi']);
     });
 
     // Ruang Route

@@ -4,7 +4,7 @@
 <div class="values">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="/ruang">
+            <form action="/dokter">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari Dokter" name="cari_dokter" value="{{ request('cari_dokter') }}">
                     <button class="btn btn-danger" type="submit">Cari</button>

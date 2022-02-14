@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\App;
 
 // Memanggil Model
 use App\Models\{Transaksi_Model, Pasien_Model, User};
@@ -124,5 +125,24 @@ class Transaksi_Controller_A extends Controller
         Transaksi_Model::where('id_transaksi', $id)->delete();
 
         return redirect('/transaksi')->with('danger', 'Transaksi Berhasil Dihapus');
+    }
+
+    public function pdf_transaksi(int $id)
+    {
+        $laporan = Transaksi_Model::where('user_id', $id)->first();
+
+        $data = [
+            "title" => "Laporan Pengunjung",
+            "laporan" => $laporan,
+        ];
+
+        // Calling DOMPDF
+        $pdf = App::make('dompdf.wrapper');
+
+        // Loading view using DOMPSDF
+        $pdf->loadview('User/Transaksi/print_pdf_transaksi', $data)->setpaper('A4', 'portrait');
+
+        // Showing The pdf
+        return $pdf->stream('Transaksi');
     }
 }
