@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div style="font-size: 64px; color: '#dddddd'; "><i>Laporan Pengunjung</i></div>
+    <div style="font-size: 64px; color: '#dddddd'; "><i>Transaksi User</i></div>
     <p>
         <i>Bonevian Manajemen Puskesmas</i><br>
         Bandung, Indonesia <br>
