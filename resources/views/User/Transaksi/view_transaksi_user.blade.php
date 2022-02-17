@@ -16,7 +16,7 @@
                                     <img style="width:150px; height: auto; padding-top: 10px;" src="{{ asset('storage/'.$transactions->foto_bukti_bayar) }}">
                                     <h2 class="judul">{{ $transactions->user->name }}</h2>
                                     <p>Text</p>
-                                    <p><a href="/transaksi_user/pdf/{{ $transactions->id_transaksi }}">PDF</a></p>
+                                    <p><a href="/transaksi_user/pdf/{{ $transactions->id_transaksi }}" target="_blank">PDF</a></p>
                                     <p><button><a href="/transaksi_user/{{ $transactions->id_transaksi }}">Informasi Lebih</a></button></p>
                                 </div>
                             </div>

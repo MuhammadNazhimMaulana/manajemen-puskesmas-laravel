@@ -26,22 +26,20 @@
         048124848
     </p>
     <p>
-        Pembuat : {{ $laporan->user->name }}<br>
-        No. Laporan : {{ $laporan->id_laporan }}<br>
-        Tanggal : {{ $laporan->created_at->toDateString() }}
+        Kepada : {{ $transaksi->user->name }}<br>
+        No. Transaksi : {{ $transaksi->id_transaksi }}<br>
+        Tanggal : {{ $transaksi->created_at->toDateString() }}
     </p>
     <table cellpadding="6">
         <tr>
-            <th><strong>Jumlah Pengunjung</strong></th>
-            <th><strong>Jumlah Transaksi</strong></th>
-            <th><strong>Periode Awal</strong></th>
-            <th><strong>Periode Akhir</strong></th>
+            <th><strong>Jumlah Pembayaran</strong></th>
+            <th><strong>Keterangan Pembayaran</strong></th>
+            <th><strong>Tanggal Bayar</strong></th>
         </tr>
         <tr>
-            <td>{{ $laporan->jumlah_pengunjung }}</td>
-            <td>{{ $laporan->jumlah_transaksi }}</td>
-            <td>{{ $laporan->periode_awal }}</td>
-            <td>{{ $laporan->periode_akhir }}</td>
+            <td>{{ $transaksi->biaya_pembayaran }}</td>
+            <td>{{ $transaksi->ket_pembayaran }}</td>
+            <td>{{ $transaksi->tanggal_bayar }}</td>
         </tr>
     </table>
 
