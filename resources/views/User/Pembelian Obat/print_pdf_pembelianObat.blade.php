@@ -26,20 +26,20 @@
         048124848
     </p>
     <p>
-        Kepada : {{ $transaksi->user->first_name }}<br>
-        No. Transaksi : {{ $transaksi->id_transaksi }}<br>
-        Tanggal : {{ $transaksi->created_at->toDateString() }}
+        Kepada : {{ $pembelian->user->first_name }}<br>
+        No. Transaksi : {{ $pembelian->id_pembelian }}<br>
+        Tanggal : {{ $pembelian->created_at->toDateString() }}
     </p>
     <table cellpadding="6">
         <tr>
+            <th><strong>PPN</strong></th>
             <th><strong>Jumlah Pembayaran</strong></th>
-            <th><strong>Keterangan Pembayaran</strong></th>
-            <th><strong>Tanggal Bayar</strong></th>
+            <th><strong>Status Pembayaran</strong></th>
         </tr>
         <tr>
-            <td>{{ $transaksi->biaya_pembayaran }}</td>
-            <td>{{ $transaksi->ket_pembayaran }}</td>
-            <td>{{ $transaksi->tanggal_bayar }}</td>
+            <td>{{ $pembelian->ppn }}</td>
+            <td>{{ $pembelian->jumlah_bayar }}</td>
+            <td>{{ $pembelian->status_pembayaran }}</td>
         </tr>
     </table>
 

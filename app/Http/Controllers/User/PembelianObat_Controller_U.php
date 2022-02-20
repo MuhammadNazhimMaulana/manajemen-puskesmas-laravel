@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 // Memanggil Model
 use App\Models\{PembelianObat_Model, Transaksi_Model, KeranjangObat_Model, Penilaian_Model, Obat_Model};
@@ -179,5 +180,24 @@ class PembelianObat_Controller_U extends Controller
         ];
 
         return view('User/Pembelian Obat/pembayaran_obat_user', $data);
+    }
+
+    public function pdf_pembelian(int $id)
+    {
+        $pembelian = PembelianObat_Model::find($id);
+
+        $data = [
+            "title" => "Pembelian Obat User",
+            "pembelian" => $pembelian,
+        ];
+
+        // Calling DOMPDF
+        $pdf = App::make('dompdf.wrapper');
+
+        // Loading view using DOMPSDF
+        $pdf->loadview('User/Pembelian Obat/print_pdf_pembelianObat', $data)->setpaper('A4', 'portrait');
+
+        // Showing The pdf
+        return $pdf->stream('Pembelian Obat');
     }
 }

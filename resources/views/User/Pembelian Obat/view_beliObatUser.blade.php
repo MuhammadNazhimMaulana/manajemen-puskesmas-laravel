@@ -30,7 +30,7 @@
                             <th scope="col">PPN</th>
                             <th scope="col">Keterangan</th>
                             <th scope="col">Tenggat Pembayaran</th>
-                            <th scope="col">Detail</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,10 @@
                             <td>{{ $buy->ppn }}</td>
                             <td>{{ $buy->status_pembayaran }}</td>
                             <td>{{ $buy->tgl_tenggat }}</td>
-                            <td><a class="btn btn-primary" href="pembelian_user/{{ $buy->id_pembelian }}">View</a></td>
+                            <td>
+                                <a class="btn btn-primary" href="pembelian_user/{{ $buy->id_pembelian }}">View</a>
+                                <a class="btn btn-secondary" target="_blank" href="/pembelian_user/pdf/{{ $buy->id_pembelian }}">pdf</a>
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>

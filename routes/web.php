@@ -57,6 +57,7 @@ Route::middleware('user_ver')->group(function () {
         Route::post('/payment/{id}', [PembelianObat_Controller_U::class, 'payment']);
         Route::put('/payment/{id}', [PembelianObat_Controller_U::class, 'payment_process']);
         Route::get('/pembayaran_obat/{id}', [PembelianObat_Controller_U::class, 'pembayaran_obat']);
+        Route::get('/pdf/{id}', [PembelianObat_Controller_U::class, 'pdf_pembelian']);
     });
 
     // Keranjang Pemeblian Obat User Route

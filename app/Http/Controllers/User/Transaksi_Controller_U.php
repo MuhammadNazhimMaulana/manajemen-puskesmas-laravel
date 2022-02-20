@@ -75,7 +75,7 @@ class Transaksi_Controller_U extends Controller
 
     public function pdf_transaksi(int $id)
     {
-        $transaksi = Transaksi_Model::where('user_id', $id)->first();
+        $transaksi = Transaksi_Model::find($id);
 
         $data = [
             "title" => "Transaksi User",
