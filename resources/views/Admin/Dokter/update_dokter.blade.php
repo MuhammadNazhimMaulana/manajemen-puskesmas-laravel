@@ -51,14 +51,14 @@
 
                 <div class="mb-3">
                     <label for="foto_dokter" class="form-label">Upload Foto Dokter</label>
-                        <input type="hidden" name="fotoDokterLama" value="{{ $dokter->foto_dokter }}">
-                        {{-- Check If picture exist --}}
-                        @if($dokter->foto_dokter)
-                            <img src="{{ asset('storage/' . $dokter->foto_dokter) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-                        @else
-                            <img class="img-preview img-fluid mb-3 col-sm-5">
-                        @endif
-                    <input class="form-control @error('foto_dokter') is-invalid @enderror" type="file" id="foto_dokter" name="foto_dokter" onchange="previewImage()">
+                    <input type="hidden" name="fotoDokterLama" value="{{ $dokter->foto_dokter }}">
+                    {{-- Check If picture exist --}}
+                    @if($dokter->foto_dokter)
+                        <img src="{{ asset('storage/' . $dokter->foto_dokter) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                    @else
+                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                    @endif
+                   <input class="form-control @error('foto_dokter') is-invalid @enderror" type="file" id="foto" name="foto_dokter" onchange="previewImage()">
                     @error('foto_dokter')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -71,25 +71,6 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    function previewImage()
-    {
-    const image = document.querySelector('#foto_dokter');
-    const imgPreview = document.querySelector('.img-preview');
-
-    imgPreview.style.display = 'block';
-
-    const oFReader = new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-        oFReader.onload = function(oFREvent)
-        {
-            imgPreview.src = oFREvent.target.result;
-        }
-    }
-</script>
 
 @endsection
 

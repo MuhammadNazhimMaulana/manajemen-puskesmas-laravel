@@ -22,8 +22,7 @@
                         </div>
                     </div>
                     <div class="kontainer_utama">
-                        <p><i class="fa fa-briefcase informasi_lagi"></i>Tutorial Mudah</p>
-                        <p><i class="fa fa-home informasi_lagi"></i>Tutorial Mudah</p>
+                        <p><i class="fa fa-briefcase informasi_lagi"></i>{{ $pengguna->username }}</p>
                         <p><i class="fa fa-envelope informasi_lagi"></i>{{ $pengguna->email }}</p>
                         <p><i class="fa fa-phone informasi_lagi"></i>{{ $pengguna->no_hp }}</p>
                         <form action="/logout_user" method="POST">
