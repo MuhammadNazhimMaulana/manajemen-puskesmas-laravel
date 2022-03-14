@@ -23,6 +23,18 @@ class Pendaftaran_Controller_U extends Controller
         return view('User/Pendaftaran/view_pendaftaran_user', $data);
     }
 
+    // Get data dokter berdasarkan spesialis
+    public function get_dokter(string $spesialis)
+    {
+        $docters = Dokter_Model::where('spesialis', $spesialis)->get();
+        foreach($docters as $docter) {
+        //   echo "<option value=${".$docter->id."}>${".$docter->kolomnamanya."}</option>";
+          echo "<option value='" . $docter->id_dokter . "'>" .$docter->nama_dokter . "</option>";
+        //   echo "<option value=${docter->id}>${docter->kolomnamanya}</option>";
+        }
+        die;
+    }
+
     public function create_pendaftaran_user(Request $request)
     {
         // Getting name of cashier kasir nanti bisa nullable
@@ -31,9 +43,10 @@ class Pendaftaran_Controller_U extends Controller
         $data = [
             "title" => "Pendaftaran",
             "user" => User::where('id', $pengguna[2])->first(),
-            "docters" => Dokter_Model::all()
+            "docters" => Dokter_Model::select('spesialis')->distinct('spesialis')->get()
         ];
 
+        // dd($data['docters']);
         return view('User/Pendaftaran/create_pendaftaran_user', $data);
     }
 

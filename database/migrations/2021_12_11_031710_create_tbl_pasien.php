@@ -19,7 +19,7 @@ class CreateTblPasien extends Migration
             $table->unsignedBigInteger('dokter_id');
             $table->unsignedBigInteger('ruang_id');
             $table->unsignedBigInteger('daftar_id');
-            $table->unsignedBigInteger('obat_id');
+            $table->unsignedBigInteger('obat_id')->nullable();
             $table->dateTime('jadwal_periksa');
             $table->string('keterangan');
             $table->timestamps();
