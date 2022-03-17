@@ -96,6 +96,7 @@ Route::middleware('user_ver')->group(function () {
     // Pasien Route
     Route::prefix('/pasien_user')->group(function () {
         Route::get('/', [Pasien_Controller_U::class, 'get_all']);
+        Route::get('/{id}', [Pasien_Controller_U::class, 'view_pasien']);
     });
 
     // Main Route User

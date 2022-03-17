@@ -25,6 +25,7 @@
           <input type="hidden" name="user_id" class="form-control" value="{{ $pembelian->user->id }}" readonly>
           <input type="hidden" name="transaksi_id" class="form-control" value="{{ $pembelian->transaksi_id }}" readonly>
           <input type="hidden" name="pembelian_id" class="form-control" value="{{ $pembelian->id_pembelian }}" readonly>
+          <input type="hidden" name="keterangan" class="form-control" value="Transaksi" readonly>
 
         <div class="nilai-css">
           <label for="skor_pelayanan" class="form-label">Rating</label>

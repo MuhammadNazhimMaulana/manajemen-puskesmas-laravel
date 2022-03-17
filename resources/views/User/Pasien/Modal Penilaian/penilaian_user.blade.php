@@ -13,7 +13,7 @@
 
         <div class="mb-3">
           <label for="nama_penilai" class="form-label">Nama Penilai</label>
-          <input type="text" class="form-control @error('nama_penilai') is-invalid @enderror" value="{{ $pembelian->user->first_name }} {{ $pembelian->user->last_name }}" name="nama_penilai" readonly>
+          <input type="text" class="form-control @error('nama_penilai') is-invalid @enderror" value="{{ $pasien->user->first_name }} {{ $pasien->user->last_name }}" name="nama_penilai" readonly>
           @error('nama_penilai')
           <div class="invalid-feedback">
               {{ $message }}
@@ -21,10 +21,20 @@
           @enderror
         </div>
 
+        <div class="mb-3">
+          <label for="komentar" class="form-label">Komentar</label>
+          <input type="text" class="form-control @error('komentar') is-invalid @enderror" value="" name="komentar">
+          @error('komentar')
+          <div class="invalid-feedback">
+              {{ $message }}
+          </div>
+          @enderror
+        </div>
+
           {{-- Get user id --}}
-          <input type="hidden" name="user_id" class="form-control" value="{{ $pembelian->user->id }}" readonly>
-          <input type="hidden" name="transaksi_id" class="form-control" value="{{ $pembelian->transaksi_id }}" readonly>
-          <input type="hidden" name="pembelian_id" class="form-control" value="{{ $pembelian->id_pembelian }}" readonly>
+          <input type="hidden" name="user_id" class="form-control" value="{{ $pasien->user->id }}" readonly>
+          <input type="hidden" name="pasien_id" class="form-control" value="{{ $pasien->id_pasien }}" readonly>
+          <input type="hidden" name="keterangan" class="form-control" value="Pendaftaran" readonly>
 
         <div class="nilai-css">
           <label for="skor_pelayanan" class="form-label">Rating</label>
