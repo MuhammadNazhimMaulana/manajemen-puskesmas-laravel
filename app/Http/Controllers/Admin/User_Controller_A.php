@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Hash;
 
 class User_Controller_A extends Controller
 {
+    const KETERANGAN_PENDAFTARAN = 'Pendaftaran';
+
+    const KETERANGAN_PEMBELIAN = 'Transaksi';
+
     public function dashboard()
     {
         $model_transaksi = new Transaksi_Model();
@@ -30,14 +34,18 @@ class User_Controller_A extends Controller
             ->groupBy('first_name')
             ->get();
 
-        $penilaian = $model_penilaian->select(DB::raw('AVG(tbl_penilaian.skor_pelayanan) AS jumlah'))
+        $penilaian_pendaftaran = $model_penilaian->select(DB::raw('AVG(tbl_penilaian.skor_pelayanan) AS jumlah'))->where('keterangan', self::KETERANGAN_PENDAFTARAN)
+            ->get();
+
+        $penilaian_pembelian = $model_penilaian->select(DB::raw('AVG(tbl_penilaian.skor_pelayanan) AS jumlah'))->where('keterangan', self::KETERANGAN_PEMBELIAN)
             ->get();
 
         $data = [
             "title" => "Dashboard",
             "transaksi_per_kategori" => $transaksi_per_kategori,
             "pasien_per_kategori" => $pasien_per_kategori,
-            "penilaian" => $penilaian,
+            "penilaian" => $penilaian_pendaftaran,
+            "penilaian_pembelian" => $penilaian_pembelian,
         ];
 
         return view('Admin/Main/dashboard_admin', $data);

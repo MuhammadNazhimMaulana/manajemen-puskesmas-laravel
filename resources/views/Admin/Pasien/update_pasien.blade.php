@@ -21,7 +21,8 @@
                         @endforeach
                     </select>
                 </div>
-                
+
+                @can('admin')
                 <div class="mb-3">
                     <label for="dokter_id" class="form-label">Dokter</label>
                     <select class="form-select" name="dokter_id">
@@ -60,7 +61,8 @@
                         @endforeach
                       </select>
                 </div>
-                
+                @endcan()
+
                 <div class="mb-3">
                     <label for="obat_id" class="form-label">Kebutuhan Obat</label>
                     <select class="form-select" name="obat_id">
@@ -74,15 +76,17 @@
                     </select>
                 </div>
 
+                @can('admin')
                 <div class="mb-3">
                     <label for="jadwal_periksa" class="form-label">Jadwal Pemeriksaan</label>
-                    <input type="date" name="jadwal_periksa" class="form-control @error('jadwal_periksa') is-invalid @enderror" id="jadwal_periksa" placeholder="Ruang..." value="{{ old('jadwal_periksa', $pasien->jadwal_periksa) }}">
+                    <input type="date" name="jadwal_periksa" class="form-control @error('jadwal_periksa') is-invalid @enderror" id="jadwal_periksa" placeholder="Jadwal..." value="{{ old('jadwal_periksa', $pasien->jadwal_periksa) }}">
                     @error('jadwal_periksa')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
+                @endcan()
 
                 <div class="mb-3">
                     <label for="keterangan" class="form-label">Keterangan</label>

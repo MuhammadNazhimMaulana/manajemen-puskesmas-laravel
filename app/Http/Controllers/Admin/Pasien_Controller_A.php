@@ -95,11 +95,11 @@ class Pasien_Controller_A extends Controller
 
         $validatePasien = $request->validate([
             'user_id' => 'required',
-            'dokter_id' => 'required',
-            'ruang_id' => 'required',
-            'daftar_id' => 'required',
+            // 'dokter_id' => 'required',
+            // 'ruang_id' => 'required',
+            // 'daftar_id' => 'required',
             'obat_id' => 'required',
-            'jadwal_periksa' => 'required',
+            // 'jadwal_periksa' => 'required',
             'keterangan' => 'required',
         ]);
 
