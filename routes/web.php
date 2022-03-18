@@ -39,6 +39,7 @@ Route::middleware('user_ver')->group(function () {
     // Pendaftaran User Route
     Route::prefix('/pendaftaran_user')->group(function () {
         Route::get('/', [Pendaftaran_Controller_U::class, 'get_all']);
+        Route::get('/create/{spesialis}', [Pendaftaran_Controller_U::class, 'get_dokter']);
         Route::get('/create', [Pendaftaran_Controller_U::class, 'create_pendaftaran_user']);
         Route::post('/create', [Pendaftaran_Controller_U::class, 'store_pendaftaran_user']);
     });
@@ -95,6 +96,7 @@ Route::middleware('user_ver')->group(function () {
     // Pasien Route
     Route::prefix('/pasien_user')->group(function () {
         Route::get('/', [Pasien_Controller_U::class, 'get_all']);
+        Route::get('/{id}', [Pasien_Controller_U::class, 'view_pasien']);
     });
 
     // Main Route User

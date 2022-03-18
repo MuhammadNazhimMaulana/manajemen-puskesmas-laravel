@@ -25,17 +25,18 @@
             {{ session('danger') }}
         </div>
         @endif
-
+        @can('admin')
         <a href="/pasien/create" class="btn btn-primary">Tambah Pasien</a>
+        @endcan
         <table class="mt-3" width="100%">
             <thead>
                 <tr>
                     <td>Nama Pasien</td>
                     <td>Kebutuhan Pasien</td>
                     <td>Keterangan</td>
-                    @can('admin')
+                    @canany(['admin', 'dokter'])
                         <td>Aksi</td>
-                    @endcan
+                    @endcanany
                 </tr>
             </thead>
             <tbody>
@@ -44,9 +45,11 @@
                     <td>{{ $people->user->first_name }}</td>
                     <td>{{ $people->pendaftaran_model->kebutuhan}}</td>
                     <td>{{ $people->keterangan }}</td>
-                    @can('admin')
+                    @canany(['admin', 'dokter'])
                     <td>
                         <a class="btn btn-info" href="/pasien/update/{{ $people->id_pasien }}">Edit</a>
+                        @endcanany
+                        @can('admin')
                         <form action="/pasien/delete/{{ $people->id_pasien }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf

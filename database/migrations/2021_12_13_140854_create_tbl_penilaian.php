@@ -16,10 +16,14 @@ class CreateTblPenilaian extends Migration
         Schema::create('tbl_penilaian', function (Blueprint $table) {
             $table->id('id_penilaian');
             $table->string('nama_penilai');
+            $table->string('komentar');
+            $table->enum('keterangan', ['Transaksi', 'Pendaftaran']);
+            $table->boolean('selesai')->default(true);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('skor_pelayanan');
-            $table->unsignedBigInteger('transaksi_id');
-            $table->unsignedBigInteger('pembelian_id');
+            $table->unsignedBigInteger('pasien_id')->nullable();
+            $table->unsignedBigInteger('transaksi_id')->nullable();
+            $table->unsignedBigInteger('pembelian_id')->nullable();
             $table->timestamps();
         });
     }

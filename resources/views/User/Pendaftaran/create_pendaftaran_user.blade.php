@@ -29,16 +29,25 @@
                                         </div>
 
                                         <div class="mt-3 mb-5 row">
+                                            <label for="spesialis" class="col-sm-2 col-form-label">Spesialis Dokter</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-select" name="spesialis">
+                                                    @foreach ($docters as $docter)
+                                                        @if(old('spesialis') == $docter->id_dokter)
+                                                            <option value="{{ $docter->spesialis }}" selected>{{ $docter->spesialis }}</option>
+                                                        @else
+                                                            <option value="{{ $docter->spesialis }}">{{ $docter->spesialis }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                  </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-3 mb-5 row">
                                             <label for="dokter_id" class="col-sm-2 col-form-label">Nama Dokter</label>
                                             <div class="col-sm-10">
                                                 <select class="form-select" name="dokter_id">
-                                                    @foreach ($docters as $docter)
-                                                        @if(old('dokter_id') == $docter->id_dokter)
-                                                            <option value="{{ $docter->id_dokter }}" selected>{{ $docter->nama_dokter }}</option>
-                                                        @else
-                                                            <option value="{{ $docter->id_dokter }}">{{ $docter->nama_dokter }}</option>
-                                                        @endif
-                                                    @endforeach
+                                                        <option value="">Pilih Dokter</option>
                                                   </select>
                                             </div>
                                         </div>
@@ -81,4 +90,25 @@
         </div>
     </div>
 </section>
+@endsection
+
+{{-- Ajax --}}
+@section('script')
+<script type="text/javascript">
+$("[name='spesialis']").on('click', function(e) {
+    e.preventDefault()
+    e.preventDefault()
+  spesialis = $(this).val()
+  $.ajax({
+    url: "http://127.0.0.1:8000/pendaftaran_user/create/" + spesialis,
+    type: "GET",
+    dataType: "html",
+    data: {}
+  })
+  .done(function(data) {
+    $("[name='dokter_id']").html(data)
+  })
+})
+</script>
+
 @endsection

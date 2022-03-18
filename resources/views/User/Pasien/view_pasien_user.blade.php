@@ -19,6 +19,7 @@
                             <th>Pemeriksa</th>
                             <th>Ruang</th>
                             <th>Pendaftaran</th>
+                            <th>Aksi</th>
                         </tr>
                         @foreach ($pasien as $pacient)        
                             <tr>
@@ -27,6 +28,9 @@
                                 <td>{{ $pacient->dokter_model->nama_dokter }}</td>
                                 <td>{{ $pacient->ruang_model->nama_ruang }}</td>
                                 <td>{{ $pacient->pendaftaran_model->kebutuhan }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="pasien_user/{{ $pacient->id_pasien }}">View</a>
+                                </td>
                             </tr>
                         @endforeach
                     </table>

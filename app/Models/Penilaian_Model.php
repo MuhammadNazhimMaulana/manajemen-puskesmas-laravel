@@ -14,7 +14,7 @@ class Penilaian_Model extends Model
     protected $primaryKey = 'id_penilaian';
 
     // Fillable
-    protected $fillable = ['nama_penilai', 'user_id', 'transaksi_id', 'pembelian_id', 'skor_pelayanan', 'created_at', 'updated_at'];
+    protected $fillable = ['nama_penilai', 'komentar', 'pasien_id', 'keterangan', 'selesai', 'user_id', 'transaksi_id', 'pembelian_id', 'skor_pelayanan', 'created_at', 'updated_at'];
 
     // Relationships
     public function user()

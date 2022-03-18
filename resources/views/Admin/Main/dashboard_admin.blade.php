@@ -34,16 +34,6 @@
         </div>
 
         <div class="row mt-3 ms-3">
-          <div class="col-md-4">
-            <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-              <div class="card-header text-center">Jumlah Transaksi</div>
-              <div class="card-body">
-                  <div class="container-white">
-                      <canvas id="transaksi" width="400" height="400"></canvas>
-                  </div>
-              </div>
-            </div>
-          </div>
 
           <div class="col-md-4">
             <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
@@ -58,7 +48,18 @@
 
           <div class="col-md-4">
             <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-              <div class="card-header text-center">Penilaian</div>
+              <div class="card-header text-center">Penilaian Transaksi</div>
+              <div class="card-body">
+                  <div class="container-white">
+                      <canvas id="penilaian_transaksi" width="400" height="400"></canvas>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header text-center">Penilaian Pendaftaran</div>
               <div class="card-body">
                   <div class="container-white">
                       <canvas id="penilaian" width="400" height="400"></canvas>
@@ -66,7 +67,10 @@
               </div>
             </div>
           </div>
+
         </div>
+        
+
 
 @endsection
 
@@ -127,7 +131,33 @@
         data: data_pasien_per_kategori
     });
 
-    // Chart Untuk penilaian
+    // Chart Untuk penilaian transaksi
+    var kategori_penilaian_transaksi = document.getElementById('penilaian_transaksi');
+    var data_penilaian_transaksi = [];
+    var label_penilaian_transaksi = [];
+
+    @foreach($penilaian_pembelian as $key => $value)
+    data_penilaian_transaksi.push({{ $value->jumlah }});
+    @endforeach
+
+    var data_penilaian_transaksi_per_kategori = {
+        datasets: [{
+            data: data_penilaian_transaksi,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+            ],
+        }],
+        labels: label_penilaian_transaksi,
+    }
+
+    var chart_pasien = new Chart(kategori_penilaian_transaksi, {
+        type: 'doughnut',
+        data: data_penilaian_transaksi_per_kategori
+    });
+
+    // Chart Untuk penilaian pendaftaran
     var kategori_penilaian = document.getElementById('penilaian');
     var data_penilaian = [];
     var label_penilaian = [];

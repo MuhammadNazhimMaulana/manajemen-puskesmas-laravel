@@ -11,6 +11,9 @@ use App\Models\{Pasien_Model, Obat_Model, Dokter_Model, Ruang_Model, Pendaftaran
 
 class Pasien_Controller_A extends Controller
 {
+    const STATUS = 'Sedang Proses';
+    const STATUS_SELESAI = 'Selesai';
+
     public function get_all()
     {
         $data = [
@@ -40,15 +43,31 @@ class Pasien_Controller_A extends Controller
 
         $validatePasien = $request->validate([
             'user_id' => 'required',
-            'dokter_id' => 'required',
             'ruang_id' => 'required',
-            'daftar_id' => 'required',
-            'obat_id' => 'required',
             'jadwal_periksa' => 'required',
             'keterangan' => 'required',
         ]);
 
-        Pasien_Model::create($validatePasien);
+        // Find Pendaftaran
+        $daftar = Pendaftaran_Model::where('user_id', $request['user_id'])->where('status_daftar', self::STATUS)->first();
+
+        $data = [
+            'user_id' => $request['user_id'],
+            'dokter_id' => $daftar->dokter_id,
+            'ruang_id' => $request['ruang_id'],
+            'daftar_id' => $daftar->id_daftar,
+            'jadwal_periksa' => $request['jadwal_periksa'],
+            'keterangan' => $request['keterangan'],
+        ];
+
+
+        // Save Jadwal Pasien
+        Pasien_Model::create($data);
+
+        // Updating Pendaftaran
+        $pendaftaran = Pendaftaran_Model::find($data['daftar_id']);
+        $pendaftaran->status_daftar = self::STATUS_SELESAI;
+        $pendaftaran->save();
 
         return redirect('/pasien')->with('success', 'Pasien Baru Berhasil Ditambahkan');
     }
@@ -76,11 +95,11 @@ class Pasien_Controller_A extends Controller
 
         $validatePasien = $request->validate([
             'user_id' => 'required',
-            'dokter_id' => 'required',
-            'ruang_id' => 'required',
-            'daftar_id' => 'required',
+            // 'dokter_id' => 'required',
+            // 'ruang_id' => 'required',
+            // 'daftar_id' => 'required',
             'obat_id' => 'required',
-            'jadwal_periksa' => 'required',
+            // 'jadwal_periksa' => 'required',
             'keterangan' => 'required',
         ]);
 
