@@ -24,4 +24,4 @@ Move on, you will need to open your wsl terminal right in your computer and you 
 ./vendor/bin/sail up
 ```
 
-After this you may see that the app will start and you could visit **localhost/login/admin** for login as admin and you could use the app
+After this you may see that the app will start and you could visit **localhost/login/admin** for login as admin and you could use the app if you don't want to use docker is also okay for the development
