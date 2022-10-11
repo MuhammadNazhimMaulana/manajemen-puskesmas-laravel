@@ -1,11 +1,12 @@
 # Manajemen Puskesmas
+
 <!-- Requirement -->
 ### Requirements
 - WSL2 (For Docker)
 - PHP 7.4^
 
 
-First start with downloading all dependencies using 
+First start with downloading all dependencies using this command
 
 ```
 composer update
