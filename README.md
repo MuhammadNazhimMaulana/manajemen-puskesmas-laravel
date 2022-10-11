@@ -6,7 +6,7 @@
 - PHP 7.4^
 
 
-First start with downloading all vendor dependencies using 
+Starting with downloading all vendor dependencies using 
 
 ```
 composer update
