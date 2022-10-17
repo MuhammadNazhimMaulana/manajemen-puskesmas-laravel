@@ -1,4 +1,4 @@
-# Manajemen Puskesmas Laravel
+# Manajemen Puskesmas Laravel Sederhana
 
 <!-- Requirement -->
 ### Requirements
