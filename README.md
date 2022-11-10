@@ -1,6 +1,6 @@
 # Manajemen Puskesmas Laravel
 
-<!-- Requirement -->
+<!-- Requirements -->
 ### Requirements
 - WSL2 (For Docker)
 - PHP 7.4^
@@ -12,9 +12,14 @@ Starting with downloading all vendor dependencies using this command
 composer update
 ```
 
-Anda then you can copy **.env.example** into a file namede **.env** After that you may pass this command 
+Anda then you can copy **.env.example** into a file namede **.env**  using this command:
+
+```
+cp .env.example .env
+```
 
 <!-- For linking the storage and public folder -->
+After that you may pass this command 
 ```
 php artisan storage:link
 ```
